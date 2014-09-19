@@ -8,6 +8,24 @@ gem 'rails', '3.2.19'
 gem 'sqlite3'
 
 
+group :test,:development do
+  gem 'minitest'
+  gem 'spring'
+  gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'shoulda-matchers', '~> 2.5.0', require: false
+  gem 'capybara'
+  gem 'mocha'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+  gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'rspec-rails'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
