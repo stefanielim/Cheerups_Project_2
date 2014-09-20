@@ -21,6 +21,7 @@ group :test, :development do
   gem 'pry-stack_explorer'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem "erb2haml"
 end
 
 group :test do
