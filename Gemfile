@@ -13,7 +13,7 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'brakeman', :require => false
+  #gem 'brakeman', :require => false
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -21,7 +21,7 @@ group :test, :development do
   gem 'pry-stack_explorer'
   gem 'binding_of_caller'
   gem 'better_errors'
-  gem "erb2haml"
+  gem 'html2haml'
 end
 
 group :test do
