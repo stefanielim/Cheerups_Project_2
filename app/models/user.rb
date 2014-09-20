@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true, allow_blank: false
   validates :user_name, presence: true, allow_blank: false
 
+  has_many :cheerups, dependent: :destroy
+
   def can_destroy?
     # user can destroy himself or 
     # admin user can destroy anyone only until 1 admin user is left 
