@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html.haml # index.html.erb
       format.json { render json: @users }
     end
   end
@@ -33,8 +33,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
