@@ -29,11 +29,11 @@ class CheerupsController < ApplicationController
 
   def create
     @cheerup = Cheerup.new(params[:cheerup])
-    @cheerup.time_posted = Time.now
+    @cheerup.user = current_user
 
     respond_to do |format|
       if @cheerup.save
-        format.html { redirect_to @cheerups, notice: 'Cheerup was successfully created.' }
+        format.html { redirect_to cheerups_path, notice: 'Cheerup was successfully created.' }
         format.json { render json: @cheerup, status: :created, location: @cheerup }
       else
         format.html { render action: "new" }
