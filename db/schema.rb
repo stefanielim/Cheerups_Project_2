@@ -11,10 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140921023620) do
-=======
-ActiveRecord::Schema.define(:version => 20140920180718) do
 
   create_table "cheerups", :force => true do |t|
     t.text     "content"
@@ -24,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20140920180718) do
   end
 
   add_index "cheerups", ["user_id"], :name => "index_cheerups_on_user_id"
->>>>>>> anand
 
   create_table "users", :force => true do |t|
     t.string   "name",                                         :null => false

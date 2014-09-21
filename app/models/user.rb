@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   :name, :user_name , :role, :status
 
-  #validates :name, presence: true, allow_blank: false
-  #validates :user_name, presence: true, allow_blank: false
+  validates :name, presence: true, allow_blank: false
+  validates :user_name, presence: true, allow_blank: false
 
   def self.from_omniauth(auth)
     #raise
