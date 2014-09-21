@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'devise'
+gem 'omniauth-facebook'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
