@@ -1,0 +1,18 @@
+%h1 Cheerups
+
+%table
+  %tr
+    %th Cheerup
+    %th User Name
+    %th Time posted
+    %th
+    %th
+    %th
+  - @cheerups.each do |cheerup|
+    %tr
+      %td= cheerup.content
+      %td= cheerup.user.name
+      %td= time_ago_in_words(cheerup.created_at) + ' ago'
+      %td= link_to 'Show', cheerup
+      %td= link_to 'Edit', edit_cheerup_path(cheerup)
+      %td= link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 

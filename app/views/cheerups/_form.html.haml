@@ -1,0 +1,15 @@
+= form_for(@cheerup) do |f|
+  - if @cheerup.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@cheerup.errors.count, "error")
+        prohibited this cheerup from being saved:
+      %ul
+        - @cheerup.errors.full_messages.each do |msg|
+          %li= msg
+  %div
+    = f.label :content
+    = f.text_area :content, autofocus: true
+
+  .actions
+    = f.submit
