@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'devise'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

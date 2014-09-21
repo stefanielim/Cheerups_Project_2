@@ -72,4 +72,15 @@ class CheerupsController < ApplicationController
    end
  end
 
+ def vote
+  @cheerup = Cheerup.find(params[:id])
+  case params[:direction]
+  when 'up'
+    @cheerup.liked_by current_user
+  when 'down'
+    @cheerup.downvote_from current_user
+  end
+  redirect_to cheerups_path
+end
+
 end
