@@ -25,6 +25,7 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'html2haml'
+  gem 'faker'
 end
 
 group :test do
@@ -36,5 +37,5 @@ group :test do
   gem 'capybara'
   gem 'mocha'
   gem 'factory_girl_rails'
-  gem 'faker'
+  
 end

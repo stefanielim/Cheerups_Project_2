@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
 
-  has_many :cheerups #dependent: :destroy?
+  has_many :cheerups , dependent: :destroy
 
   acts_as_voter
 
@@ -50,4 +50,25 @@ class User < ActiveRecord::Base
       return false
     end
   end
+
+#creates fake users using fake gem
+#User.create(name: "test5",user_name: "test512", email: 'test5@gmail.com',password: 'password',password_confirmation: "password")
+
+  def create_test_users
+   
+    name = Faker::Name.name
+    uname = name.split(' ')[0]
+    email = Faker::Internet.email
+    password = "password"
+    User.create(name: name,user_name: uname, email: email, password: password,  password_confirmation: password)
+
+  end
+
+  def create_test_cheerups_data
+   3.times do  
+    Cheerup.create(content: Faker::Hacker.say_something_smart, user_id: self.id)
+    end
+  end
+
+
 end
