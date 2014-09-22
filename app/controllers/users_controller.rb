@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @q = User.search(params[:q])
+    @searched_users = @q.result(distinct: true)
     respond_to do |format|
       format.html 
       format.json { render json: @users }
