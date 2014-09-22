@@ -5,10 +5,10 @@
 - if @result
   %table
     %tr
-      %th name
-      %th User Name
-      %th email
-      %th
+      = content_tag :th,sort_link(@q, :name, "Name")
+      = content_tag :th,sort_link(@q, :email, "Email")
+      = content_tag :th,sort_link(@q, :user_name, "User Name")
+      = content_tag :th,sort_link(@q, :name, "Name")
       %th
       %th
     - @result.each do |user|
