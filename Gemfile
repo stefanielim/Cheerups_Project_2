@@ -8,6 +8,7 @@ gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'omniauth-facebook'
 gem 'carrierwave', '0.9.0'
+gem 'rmagick'
 
 
 group :assets do
