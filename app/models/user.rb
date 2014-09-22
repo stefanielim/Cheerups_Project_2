@@ -12,14 +12,15 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, allow_blank: false
   validates :user_name, presence: true, allow_blank: false
+  validates :user_name, uniqueness: true
 
   def self.from_omniauth(auth)
-    #raise
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.name = auth.info.first_name
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.name = auth.info.name
       user.user_name = auth.info.email
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+      #raise
       #user.name = auth.info.name  # assuming the user model has a name
       #user.image = auth.info.image # assuming the user model has an image
     end
