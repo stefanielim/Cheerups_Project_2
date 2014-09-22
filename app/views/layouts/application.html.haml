@@ -1,12 +1,17 @@
 !!! 5
 %html
+  %meta{charset: 'UTF-8'}
   %head
     %title CheerupsApp
+    %link{href:'http://fonts.googleapis.com/css?family=Open+Sans:400,300,700', rel:'stylesheet', type:'text/css'}
+
+
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     %header
+      = link_to "Cheerup.me", root_path, class: "pure-menu-selected"
       %nav
         = link_to "Users", users_path
         = link_to "Cheerups", cheerups_path
@@ -15,6 +20,6 @@
     - else
       = link_to "Sign In", new_user_session_path
       = link_to "Register", new_user_registration_path
-      %p.notice= notice
-      %p.alert= alert
-    = yield
+    %p.notice= notice
+    %p.alert= alert
+  = yield
