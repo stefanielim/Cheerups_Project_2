@@ -80,6 +80,7 @@ class CheerupsController < ApplicationController
   when 'down'
     @cheerup.downvote_from current_user
   end
+
   redirect_to cheerups_path
 end
 
