@@ -1,7 +1,24 @@
 %ul
-
   - flash.keys.each do |key|
     %li= flash[key]
+%h1 Search Results
+- if @result
+  %table
+    %tr
+      %th name
+      %th User Name
+      %th email
+      %th
+      %th
+      %th
+    - @result.each do |user|
+      %tr
+        %td= user.name
+        %td= user.user_name
+        %td= user.email
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+%br      
 %h1 Listing users
 %table
   %tr

@@ -12,11 +12,9 @@
         = link_to "Cheerups", cheerups_path
         = search_form_for @q do |f|
           %p
-            = f.label :name
-            = f.text_field :name_cont
-            %button{:name => "search"} search
-          %p
+            = f.search_field :name_or_email_or_user_name_or_cheerups_content_cont
             = f.submit
+                
     - if user_signed_in?
       Welcome #{current_user.name} #{link_to "Log out", destroy_user_session_path, method: :delete}
       %form#test_data{:action => "/users/create_test_users_data", :method => "post"}

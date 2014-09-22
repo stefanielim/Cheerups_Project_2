@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  
   before_filter :authenticate_user! , except: :create_test_users_data
 
   def create_test_users_data
