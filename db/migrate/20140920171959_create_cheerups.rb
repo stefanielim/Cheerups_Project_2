@@ -4,7 +4,6 @@ class CreateCheerups < ActiveRecord::Migration
       t.text :content
       t.datetime :time_posted
       t.references :user
-
       t.timestamps
     end
     add_index :cheerups, :user_id
