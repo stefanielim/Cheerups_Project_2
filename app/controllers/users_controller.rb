@@ -8,9 +8,11 @@ class UsersController < ApplicationController
       User.new.create_test_users
     end
     users = User.all
+
     users.each do |user|
       user.create_test_cheerups_data
     end
+
     redirect_to "users#index"
   end
 
@@ -26,13 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # if id = 'create_test_user_data'
-    #   50.times do
-    #     User.new.create_test_users
-    #   end
-    # else
     @user = User.find(params[:id])
-    # end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
