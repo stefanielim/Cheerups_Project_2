@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'omniauth-facebook'
+gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
 
@@ -27,6 +28,7 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'html2haml'
+  gem 'faker'
 end
 
 group :test do
@@ -38,5 +40,5 @@ group :test do
   gem 'capybara'
   gem 'mocha'
   gem 'factory_girl_rails'
-  gem 'faker'
+  
 end

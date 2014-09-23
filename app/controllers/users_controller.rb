@@ -1,6 +1,21 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
+  
+  before_filter :authenticate_user! , except: :create_test_users_data
+
+  def create_test_users_data
+    5.times do
+      User.new.create_test_users
+    end
+    users = User.all
+
+    users.each do |user|
+      user.create_test_cheerups_data
+    end
+
+    redirect_to "users#index"
+  end
+
 
   def index
     @users = User.all
@@ -12,7 +27,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -35,7 +49,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -75,4 +88,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  
+
 end

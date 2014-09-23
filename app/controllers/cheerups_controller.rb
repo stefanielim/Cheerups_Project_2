@@ -2,8 +2,13 @@ class CheerupsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index, :show]
 
+  def search
+    @cheerup = Cheerup.new
+  end
+
+
   def index
-    @cheerups = Cheerup.all
+    @cheerups = Cheerup.sort_by_prominence
     @cheerup = Cheerup.new
 
     respond_to do |format|
@@ -71,7 +76,7 @@ class CheerupsController < ApplicationController
      format.html { redirect_to cheerups_url }
      format.json { head :no_content }
    end
- end
+ end  
 
  def vote
   @cheerup = Cheerup.find(params[:id])
@@ -81,7 +86,7 @@ class CheerupsController < ApplicationController
   when 'down'
     @cheerup.downvote_from current_user
   end
-
+  @cheerup.set_prominence
   redirect_to cheerups_path
 end
 
