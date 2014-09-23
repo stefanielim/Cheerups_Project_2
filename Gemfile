@@ -11,6 +11,7 @@ gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
 gem 'bourbon'
+gem 'neat'
 
 
 group :assets do
