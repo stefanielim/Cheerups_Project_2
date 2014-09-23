@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :user_name , :role, :status, :profile_picture
+  :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url
   
   include Gravtastic
-   gravtastic size: 100, default: "retro" 
+   gravtastic size: 100, default: "retro", secure: true 
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       
       #user.name = auth.info.name  # assuming the user model has a name
-      user.profile_picture = auth.info.image # assuming the user model has an image
+      user.profile_picture = auth.info.image 
+      # assuming the user model has an image
       # raise
     end
   end
