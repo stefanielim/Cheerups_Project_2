@@ -1,27 +1,85 @@
 body  {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  header {
-    background-color: grey;
-    display: inline;
-    nav{
-      background-color: grey;
-      display: inline;
-      a {
-        display: inline-block;
-        padding: 10px;
-        color: white;
-        // line-height: 100px;
-        &:visited {
-          color: white;
-        }
-      }
-    }
+  background-color: $background-color;
+
+  #wrapper {
+    width: 96%;
+    margin: 0 auto;
+    // padding-top: 50px;
   }
+
   a {
     text-decoration: none;
     &:visited {
       color: blue;
     }
+  }
+  header {
+    background-color: rgb(35,31,32);
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    color: $background-color;
+    // position: fixed;
+    // top: 0;
+    a {
+      display: inline-block;
+      color: white;
+      padding: 15px;
+      &:visited {
+        color: white;
+      }
+    }
+    #site_title {
+      float: left;
+    }
+    nav {
+      display: inline;
+    }
+    #right_menu {
+      float: right;
+    }
+  }
+  main {
+    width: 73%;
+    float: left;
+    margin-left: 10px;
+    padding: 10px;
+    // border: 1px solid black;
+    .cheerup {
+      width: 400px;
+      height: 170px;
+      background-color: white;
+      // border: 1px solid lightgray;
+      border-radius: 3px;
+      margin: 0 20px 20px 0;
+      display: inline-block;
+      padding: 20px;
+      .cheerup_info {
+        font-size: 0.8em;
+        display: inline;
+        margin-right: 7px;
+      }
+    a {
+      font-size: 0.8em;
+      margin-right: 7px;
+    }
+    }
+  }
+
+  aside {
+    width: 20%;
+    float: right;
+    margin-right: 10px;
+    padding: 10px;
+    // border: 1px solid black;
+    label {
+      display: block;
+    }
+  }
+
+  td {
+    padding: 5px 15px;
   }
 }
