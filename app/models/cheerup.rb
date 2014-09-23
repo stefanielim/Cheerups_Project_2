@@ -1,6 +1,6 @@
 class Cheerup < ActiveRecord::Base
 
-  attr_accessible :content, :user_id
+  attr_accessible :content, :user_id, :cheerup_image
 
   belongs_to :user
 
