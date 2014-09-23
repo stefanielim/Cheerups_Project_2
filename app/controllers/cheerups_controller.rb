@@ -51,7 +51,7 @@ class CheerupsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @cheerup = Cheerup.find(params[:id])
   end
 
   def update
