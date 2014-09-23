@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   :name, :user_name , :role, :status, :profile_picture
   
   include Gravtastic
-   gravtastic
+   gravtastic size: 100, default: "retro" 
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
@@ -25,9 +25,10 @@ class User < ActiveRecord::Base
       user.user_name = auth.info.email
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      # raise
+      
       #user.name = auth.info.name  # assuming the user model has a name
-      #user.image = auth.info.image # assuming the user model has an image
+      user.profile_picture = auth.info.image # assuming the user model has an image
+      # raise
     end
   end
 
