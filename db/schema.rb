@@ -16,11 +16,10 @@ ActiveRecord::Schema.define(:version => 20140923111852) do
   create_table "cheerups", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "cheerup_image"
-    t.integer  "prominence", :default => 0
-
+    t.integer  "prominence",    :default => 0
   end
 
   add_index "cheerups", ["user_id"], :name => "index_cheerups_on_user_id"

@@ -10,6 +10,7 @@ gem 'omniauth-facebook'
 gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
+gem 'gravtastic'
 
 
 group :assets do

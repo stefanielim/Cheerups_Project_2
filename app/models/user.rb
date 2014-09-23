@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   :name, :user_name , :role, :status, :profile_picture
+  
+  include Gravtastic
+   gravtastic
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
