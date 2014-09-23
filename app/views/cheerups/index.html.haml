@@ -1,4 +1,4 @@
-%main
+%main#cheerup_main
   %h1 Cheerups
 
   - @cheerups.each do |cheerup|
@@ -12,8 +12,8 @@
       %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
       %br
       = link_to 'Show', cheerup
-      = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote/#{cheerup.id}"
-      = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote/#{cheerup.id}"
+      = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}"
+      = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}"
       = link_to 'Edit', edit_cheerup_path(cheerup)
       = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 

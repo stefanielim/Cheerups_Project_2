@@ -79,6 +79,7 @@ class CheerupsController < ApplicationController
  end  
 
  def vote
+  #raise
   @cheerup = Cheerup.find(params[:id])
   case params[:direction]
   when 'up'
