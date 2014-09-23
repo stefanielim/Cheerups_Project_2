@@ -40,6 +40,16 @@ body  {
     #right_menu {
       float: right;
     }
+    #search_submit_button {
+      background-color: black;
+      color: $background-color;
+      border: 1px solid $background-color;
+      font-size: 0.8em;
+      padding: 5px;
+    }
+    #q_content_or_user_name_cont {
+      color:  rgb(35,31,32);
+    }
   }
   main {
     width: 73%;
