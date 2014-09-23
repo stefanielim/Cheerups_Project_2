@@ -4,6 +4,7 @@ class CheerupsController < ApplicationController
 
   def index
     @cheerups = Cheerup.all
+    @cheerup = Cheerup.new
 
     respond_to do |format|
       format.html 
