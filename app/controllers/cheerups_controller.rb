@@ -71,7 +71,7 @@ class CheerupsController < ApplicationController
      format.html { redirect_to cheerups_url }
      format.json { head :no_content }
    end
- end
+ end  
 
  def vote
   @cheerup = Cheerup.find(params[:id])
@@ -81,7 +81,7 @@ class CheerupsController < ApplicationController
   when 'down'
     @cheerup.downvote_from current_user
   end
-
+  @cheerup.set_prominence
   redirect_to cheerups_path
 end
 

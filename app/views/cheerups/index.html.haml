@@ -7,6 +7,7 @@
       %p.cheerup_info Posted by: #{cheerup.user.name}
       %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
       %br
+      %p.cheerup_info  Prominence #{cheerup.prominence}
       %p.cheerup_info  Upvotes #{cheerup.get_upvotes.size}
       %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
       %br
