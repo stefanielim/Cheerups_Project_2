@@ -1,0 +1,21 @@
+%main
+  %h1 Cheerups
+
+  - @result.each do |cheerup|
+    .cheerup
+      %p= cheerup.content
+      %p.cheerup_info Posted by: #{cheerup.user.name}
+      %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
+      %br
+      %p.cheerup_info  Upvotes #{cheerup.get_upvotes.size}
+      %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
+      %br
+      = link_to 'Show', cheerup
+      = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
+      = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
+      = link_to 'Edit', edit_cheerup_path(cheerup)
+      = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
+
+%aside
+  %h4 Create a cheerup
+  = render 'form'
