@@ -10,6 +10,7 @@
     %th name
     %th username
     %th email
+    %th prominence
     %th
     %th
   - @users.each do |user|
@@ -22,6 +23,7 @@
       %td= user.name
       %td= user.user_name
       %td= user.email
+      %td= user.prominence
          
       %td= link_to 'Show', user
       %td= link_to 'Edit', edit_user_path(user)

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :user_name , :role, :status, :profile_picture
+  :name, :user_name , :role, :status, :profile_picture, :prominence
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
@@ -72,5 +72,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def calc_prominence
+    cheerups.pluck(:prominence).sum
+  end
+
+  def set_prominence
+    self.update_attributes(prominence: self.calc_prominence)
+  end
+
+  def self.sort_by_prominence
+    User.all.sort_by(&:prominence).reverse
+  end
 
 end

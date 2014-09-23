@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all
+    @users = User.sort_by_prominence
     respond_to do |format|
       format.html 
       format.json { render json: @users }

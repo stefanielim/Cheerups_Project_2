@@ -80,6 +80,7 @@ class CheerupsController < ApplicationController
 
  def vote
   @cheerup = Cheerup.find(params[:id])
+  @user = @cheerup.user
   case params[:direction]
   when 'up'
     @cheerup.liked_by current_user
@@ -87,6 +88,7 @@ class CheerupsController < ApplicationController
     @cheerup.downvote_from current_user
   end
   @cheerup.set_prominence
+  @user.set_prominence
   redirect_to cheerups_path
 end
 
