@@ -4,6 +4,7 @@
   - @cheerups.each do |cheerup|
     .cheerup
       %p= cheerup.content
+      %p= link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url 
       %p.cheerup_info Posted by: #{cheerup.user.name}
       %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
       %br
