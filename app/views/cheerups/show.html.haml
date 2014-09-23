@@ -7,6 +7,4 @@ says:
 - else
 %p= @cheerup.content
 
-%p 
-Posted at:
-= @cheerup.created_at
+%p Posted: #{time_ago_in_words(@cheerup.created_at)} ago
