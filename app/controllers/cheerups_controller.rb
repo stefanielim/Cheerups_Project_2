@@ -4,6 +4,7 @@ class CheerupsController < ApplicationController
 
   def index
     @cheerups = Cheerup.all
+    @cheerup = Cheerup.new
 
     respond_to do |format|
       format.html 
@@ -80,6 +81,7 @@ class CheerupsController < ApplicationController
   when 'down'
     @cheerup.downvote_from current_user
   end
+
   redirect_to cheerups_path
 end
 

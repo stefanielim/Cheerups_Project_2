@@ -8,19 +8,31 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :user_name , :role, :status
+  :name, :user_name , :role, :status, :profile_picture
+
+  mount_uploader :profile_picture, ProfilePictureUploader
 
   validates :name, presence: true, allow_blank: false
   validates :user_name, presence: true, allow_blank: false
   validates :user_name, uniqueness: true
 
   def self.from_omniauth(auth)
+<<<<<<< HEAD
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name
       user.user_name = auth.info.email
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       #raise
+=======
+    # raise
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.name = auth.info.first_name
+      user.user_name = auth.info.email
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      # raise
+>>>>>>> master
       #user.name = auth.info.name  # assuming the user model has a name
       #user.image = auth.info.image # assuming the user model has an image
     end
