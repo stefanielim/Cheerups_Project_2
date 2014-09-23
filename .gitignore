@@ -19,3 +19,5 @@ git config --global /db/seeds.rb
 /tmp
 
 /public/uploads
+/db/schema.rb
+

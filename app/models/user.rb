@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 
   def create_test_cheerups_data
    3.times do  
-    Cheerup.create(content: Faker::Hacker.say_something_smart, user_id: self.id)
+    Cheerup.create(content: Faker::Hacker.say_something_smart, user_id: self.id, prominence: 0)
     end
   end
 
