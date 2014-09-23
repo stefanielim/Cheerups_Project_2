@@ -19,6 +19,7 @@
       - if user.profile_picture?
         = link_to image_tag(user.profile_picture.thumb.url), user.profile_picture.detail.url  
       - else
+        = link_to image_tag user.gravatar_url
       %td= user.name
       %td= user.user_name
       %td= user.email
