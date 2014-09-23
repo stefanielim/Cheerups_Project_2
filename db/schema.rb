@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140922183910) do
+ActiveRecord::Schema.define(:version => 20140923100735) do
 
   create_table "cheerups", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "cheerup_image"
   end
 
   add_index "cheerups", ["user_id"], :name => "index_cheerups_on_user_id"
