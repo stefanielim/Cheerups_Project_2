@@ -2,6 +2,11 @@ class CheerupsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index, :show]
 
+  def search
+    @cheerup = Cheerup.new
+  end
+
+
   def index
     @cheerups = Cheerup.all
     @cheerup = Cheerup.new

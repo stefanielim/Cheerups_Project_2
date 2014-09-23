@@ -2,23 +2,7 @@
   - flash.keys.each do |key|
     %li= flash[key]
 %h1 Search Results
-- if @result
-  %table
-    %tr
-      = content_tag :th,sort_link(@q, :name, "Name")
-      = content_tag :th,sort_link(@q, :email, "Email")
-      = content_tag :th,sort_link(@q, :user_name, "User Name")
-      = content_tag :th,sort_link(@q, :name, "Name")
-      %th
-      %th
-    - @result.each do |user|
-      %tr
-        %td= user.name
-        %td= user.user_name
-        %td= user.email
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_user_path(user)
-%br      
+
 %h1 Listing users
 %table
   %tr
