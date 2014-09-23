@@ -12,6 +12,7 @@ gem 'carrierwave', '0.9.0'
 gem 'rmagick'
 gem 'bourbon'
 gem 'neat'
+gem 'bitters'
 
 
 group :assets do
