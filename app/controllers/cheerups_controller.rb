@@ -8,7 +8,7 @@ class CheerupsController < ApplicationController
 
 
   def index
-    @cheerups = Cheerup.sort_by_prominence
+    @cheerups = Cheerup.random_display
     @cheerup = Cheerup.new
 
     respond_to do |format|

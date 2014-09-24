@@ -24,4 +24,8 @@ class Cheerup < ActiveRecord::Base
   def self.sort_by_prominence
     Cheerup.all.sort_by(&:prominence).reverse
   end
+
+  def self.random_display
+    Cheerup.all.shuffle
+  end
 end
