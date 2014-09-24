@@ -36,18 +36,9 @@ $().ready(function(e){
 
       url = "/cheerups/"+cheerup_id;
 
-      var cheerUpHtml = getCheerupInformation(url,"GET");
-      var id =  cheerupVoteAction+ "_" +cheerup_id;
-      if (cheerupVoteAction == "upvote") {
-        var idOfAttributeToBeSet = "prominence_"+id;
-        $('p#'+idOfAttributeToBeSet).text("Prominence 1");
-        $('p#'+id).text("Upvotes 1");                
-      }
-      else {
-      $('p#id').text("Downvotes 1");                        
-      }
-      console.log("cheerupVoteAction=" + cheerupVoteAction);  
-      console.log("id=" + id);  
+      getCheerupInformation(url,"GET");
+      
+
      },
      error: function(response){
       console.log("There was an error in PUT request"+ response.text);
@@ -90,7 +81,12 @@ $().ready(function(e){
         console.log("cheerup user_id" + response.cheerup['user_id']);
         console.log("cheerup id" + response.cheerup['id']);
 
-          
+        var cheerup_id = response.cheerup['id'];
+
+        $('#prominence_'+cheerup_id).text("Prominence "+response.cheerup['prominence']);  
+        $('#upvote_'+cheerup_id).text("Upvotes "+response.cheerup['upvote']);
+        $('#downvote_'+cheerup_id).text("Downvotes "+response.cheerup['downvote']);
+
       },
       error: function(response){
        console.log("There was an error in GET request"+ response.text);
@@ -98,7 +94,7 @@ $().ready(function(e){
 
     });
 
-    return "<htm>"
+    
   }
 
 
