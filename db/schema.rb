@@ -11,32 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140923180505) do
+ActiveRecord::Schema.define(:version => 20140924100729) do
 
   create_table "cheerups", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-    t.string   "cheerup_image"
     t.integer  "prominence",    :default => 0
+    t.string   "cheerup_image"
   end
 
   add_index "cheerups", ["user_id"], :name => "index_cheerups_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                         :null => false
-    t.string   "user_name",                                    :null => false
+    t.string   "name",                                                    :null => false
+    t.string   "user_name",                                               :null => false
     t.string   "status",                 :default => "active"
     t.string   "role",                   :default => "user"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.string   "email",                  :default => "",       :null => false
-    t.string   "encrypted_password",     :default => "",       :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.string   "email",                  :default => "",                  :null => false
+    t.string   "encrypted_password",     :default => "",                  :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,        :null => false
+    t.integer  "sign_in_count",          :default => 0,                   :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20140923180505) do
     t.string   "uid"
     t.string   "profile_picture"
     t.integer  "prominence",             :default => 0
+    t.string   "reputation",             :default => "Junior_Cheerupper"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
