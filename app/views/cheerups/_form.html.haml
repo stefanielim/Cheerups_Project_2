@@ -8,7 +8,6 @@
         - @cheerup.errors.full_messages.each do |msg|
           %li= msg
   %div
-    = f.label :content
     = f.text_area :content, cols: 30
   %div
     = f.file_field :cheerup_image
