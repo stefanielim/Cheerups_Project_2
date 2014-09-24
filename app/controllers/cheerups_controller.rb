@@ -1,11 +1,13 @@
 class CheerupsController < ApplicationController
 
-  load_and_authorize_resource :except => [:index]
-  
-  before_filter :authenticate_user!, except: [:index, :show]
+  load_and_authorize_resource :except => [:index, :search]
+
+  before_filter :authenticate_user!, except: [:index, :show, :search]
 
   def search
     @cheerup = Cheerup.new
+    @cheerups = @result
+    render "index"
   end
 
 

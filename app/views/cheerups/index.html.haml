@@ -1,6 +1,7 @@
 %main
   %h1 Cheerups
 
+
   - @cheerups.each do |cheerup|
     .cheerup
       
@@ -10,7 +11,7 @@
       %p= cheerup.content
    
 
-      %p.cheerup_info Posted by: #{cheerup.user.name}
+      %p.cheerup_info Posted by: #{cheerup.user.try(:name)}
       %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
       %br
       %p.cheerup_info  Prominence #{cheerup.prominence}

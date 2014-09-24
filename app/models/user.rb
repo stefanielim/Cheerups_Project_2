@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
+    
   end
 
 
