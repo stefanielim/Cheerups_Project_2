@@ -2,7 +2,10 @@
   %p#notice= notice
 
   .profile_photo
-    = link_to image_tag(@user.profile_picture.thumb.url), @user.profile_picture.detail.url
+    - if @user.profile_picture?
+      = link_to image_tag(@user.profile_picture.thumb.url), @user.profile_picture.detail.url  
+    - else
+      = link_to image_tag @user.gravatar_url
 
   .profile_info
     %h4 Name: #{@user.name}
