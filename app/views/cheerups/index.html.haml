@@ -28,8 +28,8 @@
             = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
             = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
 
-        = link_to 'Edit', edit_cheerup_path(cheerup)
-        = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
+          = link_to 'Edit', edit_cheerup_path(cheerup)
+          = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 
 - if current_user 
   - if current_user.role?(:admin) || current_user.role?(:user)
