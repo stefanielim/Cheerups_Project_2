@@ -18,11 +18,13 @@
       %p.cheerup_info  Upvotes #{cheerup.get_upvotes.size}
       %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
       %br
-
+      
       = link_to 'Show', cheerup
       - if current_user && current_user.role?(:admin)
-        = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
-        = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
+        - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+        
+          = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
+          = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
         = link_to 'Edit', edit_cheerup_path(cheerup)
         = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 
