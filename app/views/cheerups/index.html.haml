@@ -14,7 +14,7 @@
         %p= cheerup.content
      
 
-        %p.cheerup_info Posted by: #{cheerup.user.name}
+        %p.cheerup_info Posted by: #{cheerup.user.try(:name)}
         %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
         %br
         %p.cheerup_info  Prominence #{cheerup.prominence}
@@ -22,15 +22,22 @@
         %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
         %br
         = link_to 'Show', cheerup
-        = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
-        = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
+        - if current_user && current_user.role?(:admin)
+          - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+          
+            = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
+            = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
+
         = link_to 'Edit', edit_cheerup_path(cheerup)
         = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 
-%aside
-  #create_cheerup
-    #new_cheerup_title
-      %h4 Create a cheerup
-      %i{class:"fa fa-plus-square-o"}
-    .hidden#new_cheerup_form
-      = render 'form'
+- if current_user 
+  - if current_user.role?(:admin) || current_user.role?(:user)
+    %aside
+      #create_cheerup
+        #new_cheerup_title
+          %h4 Create a cheerup
+          %i{class:"fa fa-plus-square-o"}
+        .hidden#new_cheerup_form
+          = render 'form'
+
