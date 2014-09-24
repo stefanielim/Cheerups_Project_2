@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140923111852) do
+ActiveRecord::Schema.define(:version => 20140923180505) do
 
   create_table "cheerups", :force => true do |t|
     t.text     "content"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20140923111852) do
     t.string   "provider"
     t.string   "uid"
     t.string   "profile_picture"
+    t.integer  "prominence",             :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

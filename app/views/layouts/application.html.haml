@@ -18,12 +18,12 @@
         = link_to "Cheerups", cheerups_path
         = search_form_for @q, url: search_cheerups_path, html: {method: :post} do |f|
           %p
-            = f.search_field :content_or_user_name_cont
-            = f.submit
+            = f.search_field :content_or_user_name_cont, placeholder: 'Search for cheerup or user...'
+            = f.submit 'Search', id: 'search_submit_button'
     
     %div#right_menu            
       - if user_signed_in?
-        Welcome, #{current_user.name} #{link_to "Log out", destroy_user_session_path, method: :delete}
+        Welcome, #{link_to "#{current_user.name}", user_path(current_user)} #{link_to "Log out", destroy_user_session_path, method: :delete}
         %form#test_data{:action => "/users/create_test_users_data", :method => "post"}
           %button{:name => "test"} Create Test Data
       - else
