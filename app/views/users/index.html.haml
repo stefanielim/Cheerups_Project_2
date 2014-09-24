@@ -1,16 +1,15 @@
 %ul
   - flash.keys.each do |key|
     %li= flash[key]
-%h1 Search Results
 
-%h1 Listing users
-%table
+%table.table-minimal
   %tr
-    %th profile picture
-    %th name
-    %th username
-    %th email
-    %th prominence
+    %th Picture
+    %th Name
+    %th Username
+    %th Email
+    %th Prominence
+    %th Reputation
     %th
     %th
   - @users.each do |user|
@@ -25,8 +24,10 @@
       %td= user.user_name
       %td= user.email
       %td= user.prominence
+      %td= user.reputation
          
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
+      %td= button_to "Show", user, :method => "get"
+      %td= button_to "Edit", edit_user_path(user), :method => "get"
 %br
+
 

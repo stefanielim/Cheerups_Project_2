@@ -1,15 +1,34 @@
+
 %main#cheerup_main
-  %h1 Cheerups
+  #display_methods
+    = link_to 'Random', display_cheerups_path(display: 'random')
+    = link_to 'Prominent', display_cheerups_path(display: 'prominent')
 
 
-  - @cheerups.each do |cheerup|
-    .cheerup
-      
-      - if cheerup.cheerup_image?
-        = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
-      - else
-      %p= cheerup.content
-   
+  / %div{id: "#{params[:display]}"}
+  #cheerups
+    - @cheerups.each do |cheerup|
+      .cheerup
+        
+        - if cheerup.cheerup_image?
+          = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
+        - else
+        %p= cheerup.content
+     
+
+        %p.cheerup_info Posted by: #{cheerup.user.try(:name)}
+        %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
+        %br
+        %p.cheerup_info  Prominence #{cheerup.prominence}
+        %p.cheerup_info  Upvotes #{cheerup.get_upvotes.size}
+        %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
+        %br
+        = link_to 'Show', cheerup
+        - if current_user && current_user.role?(:admin)
+          - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+          
+            = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
+            = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
 
       %p.cheerup_info Posted by: #{cheerup.user.try(:name)}
       %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
@@ -35,5 +54,11 @@
 %aside
 - if current_user 
   - if current_user.role?(:admin) || current_user.role?(:user)
-    %h4 Create a cheerup
-    = render 'form'
+    %aside
+      #create_cheerup
+        #new_cheerup_title
+          %h4 Create a cheerup
+          %i{class:"fa fa-plus-square-o"}
+        .hidden#new_cheerup_form
+          = render 'form'
+

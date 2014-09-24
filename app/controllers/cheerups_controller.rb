@@ -11,13 +11,24 @@ class CheerupsController < ApplicationController
   end
 
   def index
-    @cheerups = Cheerup.sort_by_prominence
+    @cheerups = Cheerup.random_display
     @cheerup = Cheerup.new
 
     respond_to do |format|
       format.html 
       format.json { render json: @cheerups }
     end
+  end
+
+  def display
+    @cheerup = Cheerup.new
+    case params[:display]
+    when 'random'
+      @cheerups = Cheerup.random_display
+    when 'prominent'
+      @cheerups = Cheerup.sort_by_prominence
+    end
+    render 'index'
   end
 
   def show
@@ -105,6 +116,13 @@ class CheerupsController < ApplicationController
         format.json { render json: "Sorry, you can't vote on your own cheerup", status: :unprocessable_entity }
       end
     end
+    @cheerup.set_prominence
+    @user.set_prominence
+    @user.update_reputation
+    redirect_to cheerups_path
+  else
+    redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"
+
   end
   
 end
