@@ -15,7 +15,3 @@
       = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
       = link_to 'Edit', edit_cheerup_path(cheerup)
       = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
-
-%aside
-  %h4 Create a cheerup
-  = render 'form'
