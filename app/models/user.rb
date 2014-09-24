@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
   validates :user_name, presence: true, allow_blank: false
   validates :user_name, uniqueness: true
 
+  def role?(role_to_compare)
+    self.role.to_s == role_to_compare.to_s
+  end
+
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.first_name
