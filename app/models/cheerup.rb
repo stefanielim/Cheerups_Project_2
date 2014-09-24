@@ -1,6 +1,7 @@
 class Cheerup < ActiveRecord::Base
 
-  attr_accessible :content, :user_id, :created_at, :updated_at, :prominence
+  attr_accessible :content, :user_id, :cheerup_image, :created_at, :updated_at, :prominence
+  mount_uploader :cheerup_image, CheerupImageUploader
 
   belongs_to :user
 

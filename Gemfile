@@ -10,7 +10,11 @@ gem 'omniauth-facebook'
 gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
-
+gem 'gravtastic'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+gem 'cancan'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

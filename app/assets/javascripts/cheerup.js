@@ -58,6 +58,7 @@ $().ready(function(e){
 
     event.preventDefault();
 
+
     var newCheerUpContent = $('#cheerup_content').val()
 
     // $.ajax({
@@ -70,7 +71,8 @@ $().ready(function(e){
     //   }
     // });
     console.log(newCheerUpContent);
+    console.log("form submitted");
+
 
   });
 });
-

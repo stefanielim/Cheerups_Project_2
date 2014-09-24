@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :user_name , :role, :status, :profile_picture
+  :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url, :prominence
+  
+  include Gravtastic
+   gravtastic size: 100, default: "retro", secure: true 
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
@@ -16,15 +19,23 @@ class User < ActiveRecord::Base
   validates :user_name, presence: true, allow_blank: false
   validates :user_name, uniqueness: true
 
+  def role?(role_to_compare)
+    self.role.to_s == role_to_compare.to_s
+    
+  end
+
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.first_name
       user.user_name = auth.info.email
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      # raise
+      
       #user.name = auth.info.name  # assuming the user model has a name
-      #user.image = auth.info.image # assuming the user model has an image
+      user.profile_picture = auth.info.image 
+      # assuming the user model has an image
+      # raise
     end
   end
 
@@ -72,5 +83,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def calc_prominence
+    cheerups.pluck(:prominence).sum
+  end
+
+  def set_prominence
+    self.update_attributes(prominence: self.calc_prominence)
+  end
+
+  def self.sort_by_prominence
+    User.all.sort_by(&:prominence).reverse
+  end
 
 end

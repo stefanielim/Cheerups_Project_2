@@ -11,14 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20140923111852) do
+
 
   create_table "cheerups", :force => true do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "prominence", :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "prominence",    :default => 0
+    t.string   "cheerup_image"
   end
 
   add_index "cheerups", ["user_id"], :name => "index_cheerups_on_user_id"
@@ -43,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20140923111852) do
     t.string   "provider"
     t.string   "uid"
     t.string   "profile_picture"
+    t.integer  "prominence",             :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

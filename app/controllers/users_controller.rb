@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  
+  load_and_authorize_resource  except: :create_test_users_data
   before_filter :authenticate_user! , except: :create_test_users_data
 
   def create_test_users_data
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all
+    @users = User.sort_by_prominence
     respond_to do |format|
       format.html 
       format.json { render json: @users }
