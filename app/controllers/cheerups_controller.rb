@@ -17,6 +17,17 @@ class CheerupsController < ApplicationController
     end
   end
 
+  def display
+    @cheerup = Cheerup.new
+    case params[:display]
+    when 'random'
+      @cheerups = Cheerup.random_display
+    when 'prominent'
+      @cheerups = Cheerup.sort_by_prominence
+    end
+    render 'index'
+  end
+
   def show
     @cheerup = Cheerup.find(params[:id])
     
