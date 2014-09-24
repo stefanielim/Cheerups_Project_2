@@ -90,6 +90,7 @@ class CheerupsController < ApplicationController
     end
     @cheerup.set_prominence
     @user.set_prominence
+    @user.update_reputation
     redirect_to cheerups_path
   else
     redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"

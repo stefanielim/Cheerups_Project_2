@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url, :prominence
+  :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url, :prominence, :reputation
   
   include Gravtastic
    gravtastic size: 100, default: "retro", secure: true 
@@ -87,6 +87,25 @@ class User < ActiveRecord::Base
 
   def self.sort_by_prominence
     User.all.sort_by(&:prominence).reverse
+  end
+
+  def update_reputation
+    case
+    when prominence > 10 && prominence <= 50
+      reputation = 'Senior_Cheerupper'
+    when prominence > 50
+      reputation = 'Master_Cheerupper'
+    when prominence < 0 && prominence >= -10
+      reputation = 'Junior_Dragdowner'
+    when prominence < -10 && prominence >= -50
+      reputation = 'Senior_Dragdowner'
+    when prominence < -50
+      reputation = 'Master_Dragdowner'
+    else
+      reputation = 'Junior_Cheerupper'
+    end
+
+    self.update_attributes(reputation: reputation)
   end
 
 end
