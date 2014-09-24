@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  
+  load_and_authorize_resource 
   before_filter :authenticate_user! , except: :create_test_users_data
 
   def create_test_users_data

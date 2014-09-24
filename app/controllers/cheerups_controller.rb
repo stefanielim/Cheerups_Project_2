@@ -1,5 +1,7 @@
 class CheerupsController < ApplicationController
 
+  load_and_authorize_resource :except => [:index]
+  
   before_filter :authenticate_user!, except: [:index, :show]
 
   def search
