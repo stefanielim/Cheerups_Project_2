@@ -37,7 +37,7 @@ $().ready(function(e){
       if (cheerupVoteAction == "upvote") {
 
         var idOfAttributeToBeSet = "prominence_"+id;
-        console.log('p#'+idOfAttributeToBeSet);
+        //console.log('p#'+idOfAttributeToBeSet);
         $('p#'+idOfAttributeToBeSet).text("Prominence 1");
         $('p#'+id).text("Upvotes 1");                
 
