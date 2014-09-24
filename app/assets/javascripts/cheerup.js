@@ -4,7 +4,8 @@ $().ready(function(e){
   console.log("document ready");
   $("a[id *= downvote],a[id ^= upvote]").on('click',function(event) { 
 
-    //event.preventDefault();
+    event.preventDefault();
+
     var cheerupVoteAction = event.currentTarget.id.split('_')[0];  
     var cheerup_id = event.currentTarget.id.split('_')[1];  
     var url = " ";
@@ -29,20 +30,23 @@ $().ready(function(e){
       url: url+".json",
       success: function(){
 
+      //code to get the prominence score and upvote and downvote  
+
       var id =  cheerupVoteAction+ "_" +cheerup_id;
-  
+      
       if (cheerupVoteAction == "upvote") {
 
         var idOfAttributeToBeSet = "prominence_"+id;
         console.log('p#'+idOfAttributeToBeSet);
         $('p#'+idOfAttributeToBeSet).text("Prominence 1");
-        $("'p#'+id").text("Upvotes 1");                
+        $('p#'+id).text("Upvotes 1");                
 
       }
       else {
       $('p#id').text("Downvotes 1");                        
       }
-
+      console.log("cheerupVoteAction=" + cheerupVoteAction);  
+      console.log("id=" + id);  
       console.log("successful post");
      }
 

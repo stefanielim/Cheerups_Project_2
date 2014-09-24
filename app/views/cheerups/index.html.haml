@@ -26,8 +26,8 @@
       - if current_user && current_user.role?(:admin)
         - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
         
-          = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
-          = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
+          = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}"
+          = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}"
         = link_to 'Edit', edit_cheerup_path(cheerup)
         = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 

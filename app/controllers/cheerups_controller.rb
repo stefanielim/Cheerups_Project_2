@@ -22,8 +22,7 @@ class CheerupsController < ApplicationController
 
   def show
     @cheerup = Cheerup.find(params[:id])
-
-    respond_to do |format|
+      respond_to do |format|
       format.html
       format.json { render json: @cheerup }
     end
@@ -72,16 +71,7 @@ class CheerupsController < ApplicationController
   end
 
   def destroy
-<<<<<<< HEAD
-    @cheerup = Cheerup.find(params[:id])
-    @cheerup.destroy
 
-    respond_to do |format|
-      format.html { redirect_to cheerups_url }
-      format.json { head :no_content }
-    end
-  end  
-=======
    @cheerup = Cheerup.find(params[:id])
    @cheerup.destroy
 
@@ -91,24 +81,6 @@ class CheerupsController < ApplicationController
    end
  end  
 
- def vote
-  @cheerup = Cheerup.find(params[:id])
-  @user = @cheerup.user
-  if @user != current_user
-    case params[:direction]
-    when 'up'
-      @cheerup.liked_by current_user
-    when 'down'
-      @cheerup.downvote_from current_user
-    end
-    @cheerup.set_prominence
-    @user.set_prominence
-    redirect_to cheerups_path
-  else
-    redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"
-  end
-end
->>>>>>> authorisation_withCanCan
 
   def vote
     @cheerup = Cheerup.find(params[:id])
