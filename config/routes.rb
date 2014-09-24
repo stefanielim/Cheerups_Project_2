@@ -4,6 +4,7 @@ CheerupsApp::Application.routes.draw do
   post 'users/create_test_users_data'
   root to: "cheerups#index"
   resources :users
+  resources :cheerups
 
   resources :cheerups do
     member do

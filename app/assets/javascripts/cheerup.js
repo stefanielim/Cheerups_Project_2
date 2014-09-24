@@ -28,36 +28,36 @@ $().ready(function(e){
     $.ajax({
       type: "PUT",
       url: url+".json",
-      success: function(response){
-        console.log(response);
+      success: function(){
+        
+        console.log("PUT request was successful");
+      
       //code to get the prominence score and upvote and downvote  
 
       url = "/cheerups/"+cheerup_id;
+
       var cheerUpHtml = getCheerupInformation(url,"GET");
-
-
       var id =  cheerupVoteAction+ "_" +cheerup_id;
-      
       if (cheerupVoteAction == "upvote") {
-
         var idOfAttributeToBeSet = "prominence_"+id;
-        //console.log('p#'+idOfAttributeToBeSet);
         $('p#'+idOfAttributeToBeSet).text("Prominence 1");
         $('p#'+id).text("Upvotes 1");                
-
       }
       else {
       $('p#id').text("Downvotes 1");                        
       }
       console.log("cheerupVoteAction=" + cheerupVoteAction);  
       console.log("id=" + id);  
-      console.log("successful put");
+     },
+     error: function(response){
+      console.log("There was an error in PUT request"+ response.text);
      }
 
     });
-
+    console.log("after the ajax PUT");
     return false;
   });
+});
 
 
   // function to create a cheerup using the ajax method 
@@ -65,24 +65,45 @@ $().ready(function(e){
   $('#new_cheerup').on('submit',function(event){
 
     event.preventDefault();
-
-
     var newCheerUpContent = $('#cheerup_content').val()
 
-    // $.ajax({
-    //   type: "POST", 
-    //   dataType: 'json',
-    //   url: 
-    //   data:
-    //   success: function(){
-
-    //   }
-    // });
     console.log(newCheerUpContent);
     console.log("form submitted");
 
 
   });
+
+
+  function getCheerupInformation(url,requestType){
+    console.log("In Cheerup Information");
+
+    console.log("url = " + url);
+    console.log("request Type = " + requestType);
+
+    $.ajax({
+      type: requestType,
+      dataType: 'json',
+      url: url,
+      success: function(response){
+        console.log("after Sucess get response is" + response );
+        console.log("cheerup content" + response.cheerup['content']);
+        console.log("cheerup user_id" + response.cheerup['user_id']);
+        console.log("cheerup id" + response.cheerup['id']);
+
+          
+      },
+      error: function(response){
+       console.log("There was an error in GET request"+ response.text);
+      }
+
+    });
+
+    return "<htm>"
+  }
+
+
+
+  /*
 
   // Stef animation
 
@@ -128,24 +149,5 @@ $().ready(function(e){
 
 });
 
+*/
 
-
-function getCheerupInformation(url,requestType){
-  console.log("In Cheerup Information");
-
-  console.log("url = " + url);
-  console.log("request Type = " + requestType);
-
-  $.ajax({
-    type: requestType,
-    dataType: 'json',
-    url: url,
-    success: function(response){
-      console.log("after Sucess get response is" + response );
-      console.log("cheerup content" + response.content);
-    }
-
-  });
-
-  return "<htm>"
-}

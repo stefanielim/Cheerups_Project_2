@@ -14,42 +14,20 @@
           = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
         - else
         %p= cheerup.content
-     
-
         %p.cheerup_info Posted by: #{cheerup.user.try(:name)}
         %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
         %br
-        %p.cheerup_info  Prominence #{cheerup.prominence}
-        %p.cheerup_info  Upvotes #{cheerup.get_upvotes.size}
-        %p.cheerup_info  Downvotes #{cheerup.get_downvotes.size}
+        %p.cheerup_info{:id =>"prominence_#{cheerup.id}"}  Prominence #{cheerup.prominence}
+        %p.cheerup_info{:id =>"upvote_#{cheerup.id}"}  Upvotes #{cheerup.get_upvotes.size}
+        %p.cheerup_info{:id =>"downvote_#{cheerup.id}"}  Downvotes #{cheerup.get_downvotes.size}
         %br
         = link_to 'Show', cheerup
         - if current_user && current_user.role?(:admin)
           - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
-          
-            = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
-            = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
-
-      %p.cheerup_info Posted by: #{cheerup.user.try(:name)}
-      %p.cheerup_info Time posted: #{time_ago_in_words(cheerup.created_at)} ago
-      %br
-
-      %p.cheerup_info{:id =>"prominence_#{cheerup.id}"}  Prominence #{cheerup.prominence}
-      %p.cheerup_info{:id =>"upvote_#{cheerup.id}"}  Upvotes #{cheerup.get_upvotes.size}
-      %p.cheerup_info{:id =>"downvote_#{cheerup.id}"}  Downvotes #{cheerup.get_downvotes.size}
-
-      %br
-      
-      = link_to 'Show', cheerup
-
-      - if current_user && current_user.role?(:admin)
-        - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
-        
-          = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}"
-          = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}"
+            = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}"
+            = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}"
         = link_to 'Edit', edit_cheerup_path(cheerup)
         = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
-
 
 %aside
 - if current_user 

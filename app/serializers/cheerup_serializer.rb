@@ -1,5 +1,5 @@
 class CheerupSerializer < ActiveModel::Serializer
-  attributes :id , :content , :cheerup_image, :prominence, :upvote , :downvote
+  attributes :id , :content , :cheerup_image, :prominence, :upvote , :downvote, :user_name
   
 
   
@@ -11,4 +11,7 @@ class CheerupSerializer < ActiveModel::Serializer
     object.get_downvotes.size
   end
 
+  def user_name
+      object.user.name
+  end
 end

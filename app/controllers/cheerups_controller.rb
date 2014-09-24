@@ -11,6 +11,7 @@ class CheerupsController < ApplicationController
   end
 
   def index
+    #raise
     @cheerups = Cheerup.random_display
     @cheerup = Cheerup.new
 
@@ -18,17 +19,6 @@ class CheerupsController < ApplicationController
       format.html 
       format.json { render json: @cheerups }
     end
-  end
-
-  def display
-    @cheerup = Cheerup.new
-    case params[:display]
-    when 'random'
-      @cheerups = Cheerup.random_display
-    when 'prominent'
-      @cheerups = Cheerup.sort_by_prominence
-    end
-    render 'index'
   end
 
   def show
@@ -39,6 +29,19 @@ class CheerupsController < ApplicationController
       format.json { render json: @cheerup }
     end
   end
+
+  def display
+    @cheerup = Cheerup.new
+    #raise
+    case params[:display]
+    when 'random'
+      @cheerups = Cheerup.random_display
+    when 'prominent'
+      @cheerups = Cheerup.sort_by_prominence
+    end
+    render 'index'
+  end
+
 
   def new
     @cheerup = Cheerup.new
@@ -110,19 +113,19 @@ class CheerupsController < ApplicationController
         @cheerup.user.set_prominence
 
         format.html { redirect_to cheerups_path }
-        format.json { head :no_content }
+        format.json { head :no_content}
       else
         format.html { redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup" }
         format.json { render json: "Sorry, you can't vote on your own cheerup", status: :unprocessable_entity }
       end
     end
-    @cheerup.set_prominence
-    @user.set_prominence
-    @user.update_reputation
-    redirect_to cheerups_path
-  else
-    redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"
+  #   @cheerup.set_prominence
+  #   @user.set_prominence
+  #   @user.update_reputation
+  #   redirect_to cheerups_path
+  # else
+  #   redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"
 
-  end
+   end
   
 end
