@@ -11,6 +11,9 @@ gem 'ransack'
 gem 'carrierwave', '0.9.0'
 gem 'rmagick'
 gem 'gravtastic'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
