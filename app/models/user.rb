@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url, :prominence, :reputation
   
   include Gravtastic
-   gravtastic size: 100, default: "retro", secure: true 
+   gravtastic size: 75, default: "retro", secure: true 
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
