@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(:version => 20140924100729) do
     t.integer  "user_id"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
-    t.integer  "prominence",    :default => 0
     t.string   "cheerup_image"
+    t.integer  "prominence",    :default => 0
   end
 
   add_index "cheerups", ["user_id"], :name => "index_cheerups_on_user_id"
