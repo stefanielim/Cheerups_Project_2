@@ -6,7 +6,6 @@ class CheerupsController < ApplicationController
     @cheerup = Cheerup.new
   end
 
-
   def index
     @cheerups = Cheerup.sort_by_prominence
     @cheerup = Cheerup.new
@@ -19,7 +18,7 @@ class CheerupsController < ApplicationController
 
   def show
     @cheerup = Cheerup.find(params[:id])
-    
+
     respond_to do |format|
       format.html
       format.json { render json: @cheerup }
@@ -51,7 +50,7 @@ class CheerupsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @cheerup = Cheerup.find(params[:id])
   end
 
   def update
@@ -69,26 +68,37 @@ class CheerupsController < ApplicationController
   end
 
   def destroy
-   @cheerup = Cheerup.find(params[:id])
-   @cheerup.destroy
+    @cheerup = Cheerup.find(params[:id])
+    @cheerup.destroy
 
-   respond_to do |format|
-     format.html { redirect_to cheerups_url }
-     format.json { head :no_content }
-   end
- end  
+    respond_to do |format|
+      format.html { redirect_to cheerups_url }
+      format.json { head :no_content }
+    end
+  end  
 
- def vote
-  #raise
-  @cheerup = Cheerup.find(params[:id])
-  case params[:direction]
-  when 'up'
-    @cheerup.liked_by current_user
-  when 'down'
-    @cheerup.downvote_from current_user
+  def vote
+    @cheerup = Cheerup.find(params[:id])
+
+    respond_to do |format|
+      if @cheerup.user != current_user
+        case params[:direction]
+        when 'up'
+          @cheerup.liked_by current_user
+        when 'down'
+          @cheerup.downvote_from current_user
+        end
+
+        @cheerup.set_prominence
+        @cheerup.user.set_prominence
+
+        format.html { redirect_to cheerups_path }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup" }
+        format.json { render json: "Sorry, you can't vote on your own cheerup", status: :unprocessable_entity }
+      end
+    end
   end
-  @cheerup.set_prominence
-  redirect_to cheerups_path
-end
-
+  
 end

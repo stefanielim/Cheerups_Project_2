@@ -26,7 +26,6 @@ $().ready(function(e){
 
     $.ajax({
       type: "PUT",
-      dataType: 'json',
       url: url+".json",
       success: function(){
 
@@ -59,8 +58,18 @@ $().ready(function(e){
 
     event.preventDefault();
 
-    console.log($("#inner-editor").text());
-    console.log("form submitted");
+    var newCheerUpContent = $('#cheerup_content').val()
+
+    // $.ajax({
+    //   type: "POST", 
+    //   dataType: 'json',
+    //   url: 
+    //   data:
+    //   success: function(){
+
+    //   }
+    // });
+    console.log(newCheerUpContent);
 
   });
 });
