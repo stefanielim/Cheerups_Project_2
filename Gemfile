@@ -14,6 +14,7 @@ gem 'gravtastic'
 gem 'bourbon'
 gem 'neat'
 gem 'bitters'
+gem 'cancan'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
