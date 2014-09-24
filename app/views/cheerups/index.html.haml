@@ -24,5 +24,9 @@
       = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 
 %aside
-  %h4 Create a cheerup
-  = render 'form'
+  #create_cheerup
+    #new_cheerup_title
+      %h4 Create a cheerup
+      %i{class:"fa fa-plus-square-o"}
+    .hidden#new_cheerup_form
+      = render 'form'
