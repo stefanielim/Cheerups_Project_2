@@ -24,4 +24,6 @@ class Cheerup < ActiveRecord::Base
   def self.sort_by_prominence
     Cheerup.all.sort_by(&:prominence).reverse
   end
+
+  
 end

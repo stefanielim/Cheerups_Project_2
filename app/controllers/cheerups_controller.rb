@@ -22,6 +22,7 @@ class CheerupsController < ApplicationController
 
   def show
     @cheerup = Cheerup.find(params[:id])
+    #raise
       respond_to do |format|
       format.html
       format.json { render json: @cheerup }

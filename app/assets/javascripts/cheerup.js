@@ -28,9 +28,13 @@ $().ready(function(e){
     $.ajax({
       type: "PUT",
       url: url+".json",
-      success: function(){
-
+      success: function(response){
+        console.log(response);
       //code to get the prominence score and upvote and downvote  
+
+      url = "/cheerups/"+cheerup_id;
+      var cheerUpHtml = getCheerupInformation(url,"GET");
+
 
       var id =  cheerupVoteAction+ "_" +cheerup_id;
       
@@ -47,7 +51,7 @@ $().ready(function(e){
       }
       console.log("cheerupVoteAction=" + cheerupVoteAction);  
       console.log("id=" + id);  
-      console.log("successful post");
+      console.log("successful put");
      }
 
     });
@@ -80,3 +84,24 @@ $().ready(function(e){
 
   });
 });
+
+
+function getCheerupInformation(url,requestType){
+  console.log("In Cheerup Information");
+
+  console.log("url = " + url);
+  console.log("request Type = " + requestType);
+
+  $.ajax({
+    type: requestType,
+    dataType: 'json',
+    url: url,
+    success: function(response){
+      console.log("after Sucess get response is" + response );
+      console.log("cheerup content" + response.content);
+    }
+
+  });
+
+  return "<htm>"
+}
