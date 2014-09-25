@@ -18,13 +18,6 @@ $().ready(function(e){
       url = "/cheerups/"+ cheerup_id + "/vote/down";
       direction = "down";
     }
-
-    // console.log(event);
-    // console.log(event.currentTarget.id);
-    // console.log(cheerup_id);
-    // console.log(cheerupVoteAction);
-    // console.log(url);
-
     $.ajax({
       type: "PUT",
       url: url+".json",
@@ -87,18 +80,11 @@ $().ready(function(e){
   function getCheerupInformation(url,requestType){
     console.log("In Cheerup Information");
 
-    // console.log("url = " + url);
-    // console.log("request Type = " + requestType);
-
     $.ajax({
       type: requestType,
       dataType: 'json',
       url: url,
       success: function(response){
-        // console.log("after Sucess get response is" + response );
-        // console.log("cheerup content" + response.cheerup['content']);
-        // console.log("cheerup user_id" + response.cheerup['user_id']);
-        // console.log("cheerup id" + response.cheerup['id']);
 
         var cheerup_id = response.cheerup['id'];
 
