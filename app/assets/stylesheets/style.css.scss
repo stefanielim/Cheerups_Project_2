@@ -242,6 +242,16 @@ main {
           padding: 0 20px;
           line-height: 60px;
         }
+        .cheerup-show {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 1.1em;
+          // font-weight: 700;
+          // color: $blue;
+          padding: 0 20px;
+          line-height: 60px;
+        }
       }
       .cheerup_poster_info {
         @include span-columns(12);

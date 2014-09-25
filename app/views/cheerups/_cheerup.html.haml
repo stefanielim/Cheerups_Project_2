@@ -8,7 +8,8 @@
       = cheerup.prominence
 
     .cheerup-show
-    
+      = link_to cheerup do
+        %i{class:"fa fa-search-plus"}
 
   .cheerup_poster_info 
     %ul
@@ -48,12 +49,3 @@
           %li= link_to 'Edit', edit_cheerup_path(cheerup)
           %li= link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
 
-
-    / .votes_info
-    /   %p.cheerup_info  Prominence #{cheerup.prominence}
-    /   %p.upvote_number
-    /     %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
-    /   %p.downvote_number
-    /     %i{class:"fa fa-frown-o"}  #{cheerup.get_downvotes.size}
-   
-  
