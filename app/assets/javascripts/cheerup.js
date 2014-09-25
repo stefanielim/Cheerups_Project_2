@@ -72,9 +72,9 @@ $().ready(function(e){
     });
   });
 
-  $('#display_methods > a').on('click', function(e) {
+  $('#display_methods').on('click', 'a', function(e) {
     e.preventDefault();
-    console.log($(this).attr('href'));
+    // console.log($(this).attr('href'));
     $('#cheerups').load($(this).attr('href') + ' #cheerups', function() {
       $('.cheerup').hide();
       $('.cheerup').each(function(i) {
@@ -82,6 +82,8 @@ $().ready(function(e){
       });
     });
     history.pushState({}, '', $(this).attr('href'));
+    $('#display_methods input:checked').prop("checked", false);
+    $(this).parent().find('input').prop('checked', true);
   });
 
   if ($('table tr').length > 0) {

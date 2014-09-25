@@ -1,0 +1,44 @@
+.cheerup
+  .cheerup_content
+    - if cheerup.cheerup_image?
+      = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
+    = cheerup.content
+
+    .prominence 
+      = cheerup.prominence
+
+  .cheerup_poster_info 
+    %ul
+      - if cheerup.user.profile_picture?
+        %li= link_to image_tag(cheerup.user.profile_picture.thumb.url), cheerup.user  
+      - else
+        %li= link_to image_tag(cheerup.user.gravatar_url), cheerup.user  
+
+        %li
+          = link_to cheerup.user.try(:user_name), cheerup.user
+          = "#{time_ago_in_words(cheerup.created_at)} ago"
+        %li.downvotes
+          = link_to vote_cheerup_path(cheerup, direction: 'down'), method: :put do
+            %i{class:"fa fa-frown-o"}  #{cheerup.get_downvotes.size}
+        %li.upvotes
+          = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put do
+            %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
+        
+
+    / .votes_info
+    /   %p.cheerup_info  Prominence #{cheerup.prominence}
+    /   %p.upvote_number
+    /     %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
+    /   %p.downvote_number
+    /     %i{class:"fa fa-frown-o"}  #{cheerup.get_downvotes.size}
+    / %br
+    / = link_to 'Show', cheerup
+    / - if current_user && current_user.role?(:admin)
+    /   - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+      
+    /     = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
+    /     = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
+
+    /   = link_to 'Edit', edit_cheerup_path(cheerup)
+    /   = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
+

@@ -12,6 +12,7 @@
     = csrf_meta_tags
   %body
     %header.navigation
+    
       = link_to "cheerup.me", root_path, class: 'logo'
       .nav
         - if current_user && current_user.role?(:admin)

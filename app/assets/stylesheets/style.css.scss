@@ -1,32 +1,58 @@
 header {
   @include clearfix;
-  position: relative;
-  z-index: 9999;
-  $navigation-height: 60px;
+  $navigation-background: white;
+  $navigation-height: 50px;
   $navigation-padding: 1em;
-  background-color: $light-gray;
+
+  background-color: $navigation-background;
+  border-bottom: 1px solid darken($navigation-background, 10);
+  height: $navigation-height;
   width: 100%;
+  z-index: 999;
+
+  // position: relative;
+  // z-index: 9999;
+ 
 
   // Site title
   .logo {
+    margin-top: 12px;
     float: left;    
     max-height: $navigation-height;
     padding-left: $navigation-padding;
     padding-right: 2em;
+    // color: darken($navigation-background, 50);
+    // a:hover {
+    //   color: $blue;
+    // }
   }
 
   // Nav bar
   .nav {
+    margin-top: 12px;
     float: left;
     a.nav-link {
+      font-weight: bold;
       display: inline-block;
+      padding-left: $navigation-padding;
+      padding-right: 1.5em;
+      // color: darken($navigation-background, 50);
+      // &:hover {
+      //   color: $blue;
+      // }
     }
   }
 
   // Right nav menu
   .navigation-tools {
     @include clearfix;
+    margin-top: 8px;
     float: right;
+
+    a {
+      padding-right: $navigation-padding;
+      padding-left: 1em;
+    }
 
     // Search bar
     .search-bar {
@@ -36,10 +62,12 @@ header {
 
       position: relative; 
       display: inline-block;
+      width: 300px;
 
       input {
         @include box-sizing(border-box);
         display: block;
+
       }
 
       div.search-and-submit {
@@ -50,13 +78,13 @@ header {
           width: 100%;
           padding: .5em .8em;
           font-size: .9em;
-          font-style: italic;
+          font-weight: lighter;
           border-radius: $base-border-radius;
           margin: 0;
         }
 
         input[type=submit] {
-          @include position(absolute, 0em 0em 0em 0);
+          @include position(absolute, 0 0 0 null);
           outline: none;
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
@@ -64,10 +92,168 @@ header {
         }
       }
     }
+  }
+}
+#wrapper {
+  width: 96%;
+  margin: 0 auto;
+  // padding-top: 50px;
+}
+aside {
+  #create_cheerup {
+    cursor: pointer;
+    #new_cheerup_title{
+      h4 {
+        // display: inline-block;
+      }
+      i {
+        float: left;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
 
+main {
+  width: 100%;
+
+  //button group
+
+  .button-group {
+    @include clearfix;
+    padding-right: 1em;
+    float: right;
+    $button-group-background: $base-background-color;
+    $button-group-color: lighten($base-font-color, 30);
+    $button-group-border: 1px solid silver;
+    $button-group-inner-border: 1px solid lighten(silver, 18);
+    $button-group-background-checked: $base-accent-color;
+    $button-group-color-checked: white;
+    $button-group-border-checked: darken($button-group-background-checked, 15);
+
+    input {
+      display: none;
+    }
+
+    label {
+      margin-bottom: 0;
+      width: 85px;
+      font-size: 0.9em;
+      text-align: center;
+      float: left;
+      clear: none;
+
+      .button-group-item {
+        background: $button-group-background;
+        border-left: $button-group-border;
+        border-radius: 0;
+        border-right: $button-group-border;
+        color: $button-group-color;
+        cursor: pointer;
+        display: inline-block;
+        font-size: $base-font-size;
+        font-weight: normal;
+        line-height: 1;
+        padding: .75em 1em;
+        width: 100%;
+        &:hover {
+          background-color: darken($button-group-background, 3);
+        }
+      }
+      &:first-child .button-group-item {
+        border-top-left-radius: $base-border-radius;
+        border-bottom-left-radius: $base-border-radius;
+        border-bottom: $button-group-border;
+        border-top: $button-group-border;
+      }
+      &:last-child .button-group-item {
+        border-bottom-right-radius: $base-border-radius;
+        border-top-right-radius: $base-border-radius;
+        border-bottom: $button-group-border;
+        border-top: $button-group-border;
+
+      }
+      input:checked + .button-group-item {
+        background: $button-group-background-checked;
+        border: 1px solid $button-group-border-checked;
+        box-shadow: inset 0 1px 2px darken($button-group-background-checked, 10);
+        color: $button-group-color-checked;
+      }
+    }
   }
 
+  .cheerup {
+    @include clearfix;
+    @include outer-container;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    // border: 1px solid silver;
+    clear: both;
+    display: inline-block;
+    width: 30%; 
+    background-color: white;
+    border-radius: 5px;
+    .cheerup_content {
+      @include span-columns(12);
+      @include omega();
+      // border: 1px solid blue;
+      text-align: center;
+      height: 200px;
+      line-height: 200px;
+      border-bottom: 1px solid rgb(230,230,230);
+      position: relative;
+      .prominence {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 40px;
+        font-weight: 700;
+        color: $blue;
+        padding: 0 20px;
+        line-height: 60px;
+      }
+    }
+    .cheerup_poster_info {
+      @include span-columns(12);
+      @include clearfix;
+      // border: 1px solid red;
+      // .post_info {
+      //   float: left;
+      // }
+      .votes_info {
+        float: right;
+        &
+        i {
+          font-size: 1.1em;
+        }
+      }
+      ul {
+        li {
+          display: inline;
+          line-height: 70px;
+          padding: 0 10px;
+          &:first-child {
+            padding: 0 10px 0 0;
+          }
+          &:last-child {
+            padding: 0 0 0 10px;
+          }
+          &.upvotes, &.downvotes {
+            float: right;
+          } 
+          img {
+            border-radius: 100%;
+            float: left;
+            max-height: 50px;
+            margin: 10px;
+          }
+        }
+      }
+    }
+  }
 
+  
+}
 
-
+.hidden {
+  display: none;
 }
