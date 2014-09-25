@@ -1,125 +1,73 @@
-body  {
-  font-family: 'Open Sans', sans-serif;
-  margin: 0;
-  background-color: $background-color;
+header {
+  @include clearfix;
+  position: relative;
+  z-index: 9999;
+  $navigation-height: 60px;
+  $navigation-padding: 1em;
+  background-color: $light-gray;
+  width: 100%;
 
-  #wrapper {
-    width: 96%;
-    margin: 0 auto;
-    // padding-top: 50px;
+  // Site title
+  .logo {
+    float: left;    
+    max-height: $navigation-height;
+    padding-left: $navigation-padding;
+    padding-right: 2em;
   }
 
-  a {
-    text-decoration: none;
-    &:visited {
-      color: blue;
-    }
-  }
-  header {
-    background-color: white;
-    border-bottom: 2px solid rgb(255, 140, 0);
-    width: 100%;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: lighter;
-    color: rgb(35,31,32);
-    // position: fixed;
-    // top: 0;
-    a {
+  // Nav bar
+  .nav {
+    float: left;
+    a.nav-link {
       display: inline-block;
-      color: rgb(35,31,32);
-      padding: 15px;
-      &:visited {
-        color: rgb(35,31,32);
-      }
-    }
-    #site_title {
-      float: left;
-    }
-    nav {
-      float: left;
-    }
-    #search_bar {
-      // float: left;
-      form {
-        display: inline-block;
-      }
-      #q_content_or_user_name_cont {
-        color:  rgb(35,31,32);
-      }
-      #search_submit_button {
-        display: inline-block;
-      } 
-    }
-    #right_menu {
-      float: right;
-    }
-  }
-  main {
-    width: 100%;
-    margin-left: 10px;
-    padding: 10px;
-    // border: 1px solid black;
-    #display_methods {
-      a {
-        display: inline-block;
-       
-      }
-    }
-    .cheerup {
-      // width: 400px;
-      // height: 170px;
-      background-color: white;
-      // border: 1px solid lightgray;
-      border-radius: 3px;
-      margin: 0 20px 20px 0;
-      display: inline-block;
-      padding: 20px;
-      .cheerup_info {
-        font-size: 0.8em;
-        display: inline;
-        margin-right: 7px;
-      }
-      a {
-        font-size: 0.8em;
-        margin-right: 7px;
-      }
     }
   }
 
-  aside {
-    width: 100%;
-    margin-right: 10px;
-    padding: 10px;
-    // border: 1px solid black;
-    #create_cheerup {
-      cursor: pointer;
-      // border: 1px solid black;
-      border-radius: 4px;
-      padding: 10px;
-      background-color: rgb(255, 140, 0);
-      color: $background-color;
-      h4 {
-        display: inline-block;
+  // Right nav menu
+  .navigation-tools {
+    @include clearfix;
+    float: right;
+
+    // Search bar
+    .search-bar {
+      $search-bar-border-color: $base-border-color;
+      $search-bar-border: 1px solid $search-bar-border-color;
+      $search-bar-background: lighten($search-bar-border-color, 10);
+
+      position: relative; 
+      display: inline-block;
+
+      input {
+        @include box-sizing(border-box);
+        display: block;
       }
-      i {
-        float: right;
-        font-size: 1.5em;
-      }
-      form {
-        #cheerup_content {
+
+      div.search-and-submit {
+        position: relative;
+
+        input[type=search] {
+          @include appearance(none);
           width: 100%;
-          font-size: 0.8em;
-          color: rgb(35,31,32);
+          padding: .5em .8em;
+          font-size: .9em;
+          font-style: italic;
+          border-radius: $base-border-radius;
+          margin: 0;
+        }
+
+        input[type=submit] {
+          @include position(absolute, 0em 0em 0em 0);
+          outline: none;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          padding: 5px 10px;
         }
       }
     }
+
   }
 
-  td {
-    padding: 5px 15px;
-  }
-}
 
-.hidden {
-  display: none;
+
+
 }
