@@ -12,7 +12,9 @@ header {
 
   // Site title
   .logo {
-    margin-top: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    margin-top: 11px;
     float: left;    
     max-height: $navigation-height;
     padding-left: $navigation-padding;
@@ -114,31 +116,40 @@ header {
   margin: 0 auto;
   padding-top: 20px;
 }
-aside {
+section {
+  @include clearfix;
+  width: 100%;
+  margin-bottom: 20px;
   #create_cheerup {
     cursor: pointer;
+    // background-color: $blue;
+    float: left;
+    width: 80%;
+    margin-top: 5px;
     #new_cheerup_title{
-      h4 {
-        // display: inline-block;
+      margin-bottom: 10px;
+      h6 {
+        display: inline-block;
+        margin: 0 10px;
       }
       i {
-        float: left;
         font-size: 1.5em;
+        padding: 0;
       }
     }
+    #new_cheerup_form {
+      margin-left: 10px;
+    }
   }
-}
-
-main {
-  width: 100%;
 
   //button group
 
   .button-group {
     @include clearfix;
-    padding-right: 1em;
+    // padding-right: 1em;
     float: right;
-    $button-group-background: $base-background-color;
+  
+    $button-group-background: white;
     $button-group-color: lighten($base-font-color, 30);
     $button-group-border: 1px solid silver;
     $button-group-inner-border: 1px solid lighten(silver, 18);
@@ -196,35 +207,41 @@ main {
       }
     }
   }
+}
 
-  .cheerup {
-    @include clearfix;
-    @include outer-container;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-    // border: 1px solid silver;
-    clear: both;
-    display: inline-block;
-    width: 30%; 
-    background-color: white;
-    border-radius: 5px;
-    .cheerup_content {
-      @include span-columns(12);
-      @include omega();
-      // border: 1px solid blue;
-      text-align: center;
-      height: 200px;
-      line-height: 200px;
-      border-bottom: 1px solid rgb(230,230,230);
-      position: relative;
-      .prominence {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 40px;
-        font-weight: 700;
-        color: $blue;
-        padding: 0 20px;
-        line-height: 60px;
+main {
+  width: 100%;
+  #cheerups{
+    
+    .cheerup {
+      @include clearfix;
+      @include outer-container;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+      // border: 1px solid silver;
+      display: inline-block;
+      width: 30%; 
+      background-color: white;
+      border-radius: 5px;
+      margin: 0 10px 10px 10px;
+      .cheerup_content {
+        @include span-columns(12);
+        @include omega();
+        // border: 1px solid blue;
+        text-align: center;
+        height: 200px;
+        line-height: 200px;
+        border-bottom: 1px solid rgb(230,230,230);
+        position: relative;
+        .prominence {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          font-size: 40px;
+          font-weight: 700;
+          color: $blue;
+          padding: 0 20px;
+          line-height: 60px;
+        }
       }
     }
     .cheerup_poster_info {
@@ -265,12 +282,24 @@ main {
       }
     }
   }
-
   
 }
 
 .hidden {
   display: none;
+}
+
+
+#welcome, #sign-in {
+  margin-bottom: 20px;
+}
+
+input#user_remember_me, label#remember_me_label {
+  display: inline;
+}
+
+.submit_form_button {
+  margin: 30px 0;
 }
 
 

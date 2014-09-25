@@ -124,7 +124,7 @@ $().ready(function(e){
   if ($('.cheerup').length > 0) {
     $('.cheerup').hide();
     $('.cheerup').each(function(i) {
-      $(this).delay((i++) * 500).fadeIn(500); 
+      $(this).delay((i++) * 500).fadeIn(300); 
     });
   }
 
