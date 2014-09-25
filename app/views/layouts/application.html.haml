@@ -11,27 +11,28 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    %header
+    %header.clearfix
       #site_title
         = link_to "cheerup.me", root_path
       %nav
         - if current_user && current_user.role?(:admin)
           = link_to "Users", users_path
         = link_to "Cheerups", cheerups_path
+      #search_bar
         = search_form_for @q, url: search_cheerups_path, html: {method: :post} do |f|
-          %p
-            = f.search_field :content_or_user_name_cont, placeholder: 'Search for cheerup or user...', id: 'search_field'
-            = f.submit 'Search', id: 'search_submit_button'
-    
-    %div#right_menu            
-      - if user_signed_in?
-        Welcome, #{link_to "#{current_user.name}", user_path(current_user)} #{link_to "Log out", destroy_user_session_path, method: :delete}
-        -if current_user && current_user.role?(:admin)
-          %form#test_data{:action => "/users/create_test_users_data", :method => "post"}
-            %button{:name => "test"} Create Test Data
-      - else
-        = link_to "Sign In", new_user_session_path
-        = link_to "Register", new_user_registration_path
+          = f.search_field :content_or_user_name_cont, placeholder: 'Search for cheerup or user...', id: 'search_field'
+          = f.submit 'Search', id: 'search_submit_button'
+        
+      #right_menu            
+        - if user_signed_in?
+          %span #{link_to "#{current_user.name}", user_path(current_user)} #{link_to "Log out", destroy_user_session_path, method: :delete}
+        - else
+          = link_to "Sign In", new_user_session_path
+          = link_to "Register", new_user_registration_path
+        
+    -if current_user && current_user.role?(:admin)
+      %form#test_data{:action => "/users/create_test_users_data", :method => "post"}
+        %button{:name => "test"} Create Test Data
 
     #wrapper
       %p.notice= notice
