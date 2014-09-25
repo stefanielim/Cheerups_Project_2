@@ -264,22 +264,23 @@ main {
           li {
             display: inline;
             line-height: 70px;
-            padding: 0 10px;
-            &:first-child {
-              padding: 0 10px 0 0;
-            }
-            &:last-child {
-              padding: 0 0 0 10px;
-            }
+           img {
+             border-radius: 100%;
+             float: left;
+             max-height: 50px;
+             margin: 10px;
+           }
             &.upvotes, &.downvotes {
               float: right;
+              font-size: 1.1em;
+              i {
+                letter-spacing: 5px;
+              }
             } 
-            img {
-              border-radius: 100%;
-              float: left;
-              max-height: 50px;
-              margin: 10px;
+            &.downvotes {
+              padding: 0 8px 0 8px;
             }
+            
           }
         }
       }

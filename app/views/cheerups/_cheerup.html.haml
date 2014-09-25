@@ -7,23 +7,38 @@
     .prominence{:id =>"prominence_#{cheerup.id}"} 
       = cheerup.prominence
 
+    .cheerup-show
+    
+
   .cheerup_poster_info 
     %ul
       - if cheerup.user.profile_picture?
-        %li= link_to image_tag(cheerup.user.profile_picture.thumb.url), cheerup.user  
+        %li= link_to image_tag(cheerup.user.profile_picture.thumb.url), cheerup.user, class: 'cheerup-avatar'  
       - else
-        %li= link_to image_tag(cheerup.user.gravatar_url), cheerup.user  
+        %li= link_to image_tag(cheerup.user.gravatar_url), cheerup.user, class: 'cheerup-avatar'   
 
-        %li
-          = link_to cheerup.user.try(:user_name), cheerup.user
-          = "#{time_ago_in_words(cheerup.created_at)} ago"
-        
-        %li.downvotes{:id =>"downvote_#{cheerup.id}"}
-          = link_to vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}" do
-            %i{class:"fa fa-frown-o"}  #{cheerup.get_downvotes.size}
-        %li.upvotes{:id =>"upvote_#{cheerup.id}"}
-          = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}" do
+      %li
+        = link_to cheerup.user.try(:user_name), cheerup.user
+        = "#{time_ago_in_words(cheerup.created_at)} ago"
+      
+      %li.downvotes{:id =>"downvote_#{cheerup.id}"}
+        - if current_user
+          - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+            = link_to vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}" do
+              %i{class:"fa fa-frown-o"} #{cheerup.get_downvotes.size}
+          - else
+            %i{class:"fa fa-frown-o"} #{cheerup.get_downvotes.size}
+        - else
+          %i{class:"fa fa-frown-o"} #{cheerup.get_downvotes.size}
+      %li.upvotes{:id =>"upvote_#{cheerup.id}"}
+        - if current_user
+          - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+            = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}" do
+              %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
+          - else
             %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
+        - else
+          %i{class:"fa fa-frown-o"} #{cheerup.get_downvotes.size}
   
   - if current_user
     -if current_user.role?(:admin)
@@ -40,14 +55,5 @@
     /     %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
     /   %p.downvote_number
     /     %i{class:"fa fa-frown-o"}  #{cheerup.get_downvotes.size}
-    / %br
-    / = link_to 'Show', cheerup
-    / - if current_user && current_user.role?(:admin)
-    /   - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
-      
-    /     = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
-    /     = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
-
-    /   = link_to 'Edit', edit_cheerup_path(cheerup)
-    /   = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
-
+   
+  
