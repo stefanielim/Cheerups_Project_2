@@ -15,7 +15,6 @@ gem 'bourbon'
 gem 'neat'
 gem 'bitters'
 gem 'cancan'
-gem 'font-awesome-sass', '~> 4.2.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
