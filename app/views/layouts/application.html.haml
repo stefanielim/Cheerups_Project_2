@@ -18,33 +18,11 @@
         - if current_user && current_user.role?(:admin)
           = link_to "Users", users_path
         = link_to "Cheerups", cheerups_path
-             
-        .modal
-          %label{:for => "modal-1"}
-            .btn.js-btn About Cheerups
-          %input#modal-1.modal-state{:type => "checkbox"}/
-          .modal-window
-            .modal-inner
-              %label.modal-close{:for => "modal-1"}
-              %h1 Welcome to Cheerups! 
-              %p.intro Thanks for visiting Cheerups - the fastest way to spread the cheer
-              %p.body Join the Cheerups community: 
-              %p.body It’s easy to join Cheerups - you can create an account or simply login with Facebook.
-              %p.body How to use: 
-              %p.body Cheeringup couldn’t be simpler - just enter your message of 141 characters or less and hit go. You can even upload an image too!
-              %p.body Reputation and voting: 
-              %p.body Let Cheereruppers know what you think! Click to up or downvote Cheerups and see the most popular messages.
-              %p.body Privacy: 
-              %p.body At Cheerups, information security is very important to us and we will never share your personal details with third parties. However, do remember that messages are public! Please Cheerup responsibly.
-              %p.body Code of conduct: 
-              %p.body Please respect other Cheereruppers. At Cheerups, we reserve the right to delete your Cheerups or suspend your account if your messages cause offence to other members or are not in keeping with the Cheery nature of our community.
-              %p.body Admin:
-              %p.body We love Cheerups and hope you do too. However, should you wish to leave, we’ve made things simple for you. You can either deactivate your account, which means we look after your details in case you wish to return, alternatively you can opt to delete it completely. You’ll find these options in your account settings.
-             
-          = search_form_for @q, url: search_cheerups_path, html: {method: :post} do |f|
-            %p
-              = f.search_field :content_or_user_name_cont, placeholder: 'Search for cheerup or user...', id: 'search_field'
-              = f.submit 'Search', id: 'search_submit_button'
+        = render 'modal'
+        = search_form_for @q, url: search_cheerups_path, html: {method: :post} do |f|
+          %p
+            = f.search_field :content_or_user_name_cont, placeholder: 'Search for cheerup or user...', id: 'search_field'
+            = f.submit 'Search', id: 'search_submit_button'
     %div#right_menu            
       - if user_signed_in?
         Welcome, #{link_to "#{current_user.name}", user_path(current_user)} #{link_to "Log out", destroy_user_session_path, method: :delete}
