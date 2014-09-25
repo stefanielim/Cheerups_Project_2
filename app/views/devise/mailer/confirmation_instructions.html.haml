@@ -1,4 +1,8 @@
 %p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
+  Welcome to Cheerups, #{@email}!
+%p Please confirm your account email through the link below:
 %p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+%p
+  We look forward to seeing you soon!
+%p
+  Love, the Cheerups team x

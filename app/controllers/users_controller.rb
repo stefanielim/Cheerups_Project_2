@@ -3,19 +3,6 @@ class UsersController < ApplicationController
   load_and_authorize_resource  except: :create_test_users_data
   before_filter :authenticate_user! , except: :create_test_users_data
 
-  def create_test_users_data
-    5.times do
-      User.new.create_test_users
-    end
-    users = User.all
-
-    users.each do |user|
-      user.create_test_cheerups_data
-    end
-
-    redirect_to "users#index"
-  end
-
 
   def index
     @users = User.sort_by_prominence

@@ -3,15 +3,16 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
+  :confirmable,
   :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable, :omniauth_providers => [:facebook]
+  :omniauthable, :omniauth_providers => [:facebook] 
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url, :prominence, :reputation
   
   include Gravtastic
-   gravtastic size: 100, default: "retro", secure: true 
+   gravtastic size: 75, default: "retro", secure: true 
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
@@ -64,25 +65,7 @@ class User < ActiveRecord::Base
     end
   end
 
-#creates fake users using fake gem
-#User.create(name: "test5",user_name: "test512", email: 'test5@gmail.com',password: 'password',password_confirmation: "password")
-
-  def create_test_users
-   
-    name = Faker::Name.name
-    uname = name.split(' ')[0]
-    email = Faker::Internet.email
-    password = "password"
-    User.create(name: name,user_name: uname, email: email, password: password,  password_confirmation: password)
-
-  end
-
-  def create_test_cheerups_data
-   3.times do  
-    Cheerup.create(content: Faker::Hacker.say_something_smart, user_id: self.id, prominence: 0)
-    end
-  end
-
+  
   def calc_prominence
     cheerups.pluck(:prominence).sum
   end

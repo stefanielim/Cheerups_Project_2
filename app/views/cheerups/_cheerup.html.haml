@@ -4,7 +4,7 @@
       = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
     = cheerup.content
 
-    .prominence 
+    .prominence{:id =>"prominence_#{cheerup.id}"} 
       = cheerup.prominence
 
   .cheerup_poster_info 
@@ -17,11 +17,12 @@
         %li
           = link_to cheerup.user.try(:user_name), cheerup.user
           = "#{time_ago_in_words(cheerup.created_at)} ago"
-        %li.downvotes
-          = link_to vote_cheerup_path(cheerup, direction: 'down'), method: :put do
+        
+        %li.downvotes{:id =>"downvote_#{cheerup.id}"}
+          = link_to vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}" do
             %i{class:"fa fa-frown-o"}  #{cheerup.get_downvotes.size}
-        %li.upvotes
-          = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put do
+        %li.upvotes{:id =>"upvote_#{cheerup.id}"}
+          = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}" do
             %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
         
 

@@ -10,8 +10,8 @@ class CheerupsController < ApplicationController
     render "index"
   end
 
-
   def index
+    #raise
     @cheerups = Cheerup.random_display
     @cheerup = Cheerup.new
 
@@ -21,8 +21,18 @@ class CheerupsController < ApplicationController
     end
   end
 
+  def show
+    @cheerup = Cheerup.find(params[:id])
+    #raise
+      respond_to do |format|
+      format.html
+      format.json { render json: @cheerup }
+    end
+  end
+
   def display
     @cheerup = Cheerup.new
+    #raise
     case params[:display]
     when 'random'
       @cheerups = Cheerup.random_display
@@ -32,14 +42,6 @@ class CheerupsController < ApplicationController
     render 'index'
   end
 
-  def show
-    @cheerup = Cheerup.find(params[:id])
-    
-    respond_to do |format|
-      format.html
-      format.json { render json: @cheerup }
-    end
-  end
 
   def new
     @cheerup = Cheerup.new
@@ -84,6 +86,7 @@ class CheerupsController < ApplicationController
   end
 
   def destroy
+
    @cheerup = Cheerup.find(params[:id])
    @cheerup.destroy
 
@@ -93,23 +96,36 @@ class CheerupsController < ApplicationController
    end
  end  
 
- def vote
-  @cheerup = Cheerup.find(params[:id])
-  @user = @cheerup.user
-  if @user != current_user
-    case params[:direction]
-    when 'up'
-      @cheerup.liked_by current_user
-    when 'down'
-      @cheerup.downvote_from current_user
-    end
-    @cheerup.set_prominence
-    @user.set_prominence
-    @user.update_reputation
-    redirect_to cheerups_path
-  else
-    redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"
-  end
-end
 
+  def vote
+    @cheerup = Cheerup.find(params[:id])
+
+    respond_to do |format|
+      if @cheerup.user != current_user
+        case params[:direction]
+        when 'up'
+          @cheerup.liked_by current_user
+        when 'down'
+          @cheerup.downvote_from current_user
+        end
+
+        @cheerup.set_prominence
+        @cheerup.user.set_prominence
+
+        format.html { redirect_to cheerups_path }
+        format.json { head :no_content}
+      else
+        format.html { redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup" }
+        format.json { render json: "Sorry, you can't vote on your own cheerup", status: :unprocessable_entity }
+      end
+    end
+  #   @cheerup.set_prominence
+  #   @user.set_prominence
+  #   @user.update_reputation
+  #   redirect_to cheerups_path
+  # else
+  #   redirect_to cheerups_path, notice: "Sorry, you can't vote on your own cheerup"
+
+   end
+  
 end
