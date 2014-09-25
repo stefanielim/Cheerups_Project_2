@@ -132,5 +132,28 @@ $().ready(function(e){
     $(this).find('img').delay((i++) * 500).fadeIn(100);
   });
 
+  // cheerup character counter
+
+  var characterCount = 0;
+    $('#new_cheerup').before("<p id='new_cheerup_character_count'></p>");
+    $('#new_cheerup div:last > input').attr('disabled', 'disabled');
+
+    $('#new_cheerup').on('keyup',function(e){
+      characterCount = $('#cheerup_content').val().length;  
+      checkMessageLengthAndEnableAndDisableNewCheerupBox(characterCount);
+      displayCharacterCount(characterCount);
+    });
+
+    function displayCharacterCount(characterCount){
+      $('#new_cheerup_character_count').text(characterCount + "/141");
+    }
+
+    function checkMessageLengthAndEnableAndDisableNewCheerupBox(charlength) {
+      if (charlength > 141) {
+          $("input[type=submit]").attr('disabled', 'true');
+      } else {
+          $("input[type=submit]").removeAttr('disabled');
+      }
+    }
 });
 
