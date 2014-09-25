@@ -13,8 +13,7 @@ CheerupsApp::Application.routes.draw do
 
     collection do 
       match 'search'=> "cheerups#search" , via: [:get, :post] , as: :search  
-      get '/:display', to: 'cheerups#display', as: 'display'
+      get 'display/:display', to: 'cheerups#display', as: 'display'
     end
   end
-
 end

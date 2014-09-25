@@ -48,7 +48,7 @@ $().ready(function(e){
     console.log("after the ajax PUT");
     return false;
   });
-});
+
 
 
   // function to create a cheerup using the ajax method 
@@ -56,7 +56,26 @@ $().ready(function(e){
   $('#new_cheerup').on('submit',function(event){
 
     event.preventDefault();
+
+    var currentUserId = Number($("a[href$='sign_out']").prev()[0].toString().substr(28,31))
+    
+    console.log(currentUserId);
+
     var newCheerUpContent = $('#cheerup_content').val()
+    // POST method for new cheerup
+
+    $.ajax({ 
+      type: 'POST',
+      url: "/cheerups",
+      data: {cheerup: {user_id: currentUserId, content: newCheerUpContent}},
+      success: function(){
+          console.log("POST Sucess");
+      },
+      error: function(){
+          console.log("POST Error");
+      }
+
+    });
 
     console.log(newCheerUpContent);
     console.log("form submitted");
@@ -93,57 +112,50 @@ $().ready(function(e){
       }
 
     });
-
-    
+   
   }
 
 
 
-  
+ // Stef animation
 
-  // Stef animation
+   $('#new_cheerup_title').on('click', function(){
+     $('#new_cheerup_form').slideToggle(400, function(){
+       // $('#new_cheerup_form').toggleClass('hidden');
+     });
+   });
 
-  $('#new_cheerup_title').on('click', function(){
-    $('#new_cheerup_form').slideToggle(400, function(){
-      // $('#new_cheerup_form').toggleClass('hidden');
-    });
-  });
+   $('#display_methods > a').on('click', function(e) {
+     e.preventDefault();
+     console.log($(this).attr('href'));
+     $('#cheerups').load($(this).attr('href') + ' #cheerups', function() {
+       $('.cheerup').hide();
+       $('.cheerup').each(function(i) {
+         $(this).delay((i++) * 500).fadeIn('fast'); 
+       });
+     });
+     history.pushState({}, '', $(this).attr('href'));
+   });
 
-  $('#display_methods > a').on('click', function(e) {
-    e.preventDefault();
-    console.log($(this).attr('href'));
-    $('#cheerups').load($(this).attr('href') + ' #cheerups', function() {
-      $('.cheerup').hide();
-      $('.cheerup').each(function(i) {
-        $(this).delay((i++) * 500).fadeIn('fast'); 
-      });
-    });
-    history.pushState({}, '', $(this).attr('href'));
-  });
+   if ($('table tr').length > 0) {
+     $('table tr').hide();
+     $('tr').each(function(i) {
+       $(this).delay((i++) * 500).fadeIn(500); 
+     });
+   }
 
-  if ($('table tr').length > 0) {
-    $('table tr').hide();
-    $('tr').each(function(i) {
-      $(this).delay((i++) * 500).fadeIn(500); 
-    });
-  }
+   if ($('.cheerup').length > 0) {
+     $('.cheerup').hide();
+     $('.cheerup').each(function(i) {
+       $(this).delay((i++) * 500).fadeIn(500); 
+     });
+   }
 
-  if ($('.cheerup').length > 0) {
-    $('.cheerup').hide();
-    $('.cheerup').each(function(i) {
-      $(this).delay((i++) * 500).fadeIn(500); 
-    });
-  }
+   // if ($('.cheerup img').length > 0) {
+   //   $('.cheerup img').hide();
+   // }
 
-  // if ($('.cheerup img').length > 0) {
-  //   $('.cheerup img').hide();
-  // }
-
-  $('#cheerups').on('load', '.cheerup', function(i) {
-    $(this).find('img').delay((i++) * 500).fadeIn(100);
-  });
-
-
-
-
-
+   $('#cheerups').on('load', '.cheerup', function(i) {
+     $(this).find('img').delay((i++) * 500).fadeIn(100);
+   });
+});
