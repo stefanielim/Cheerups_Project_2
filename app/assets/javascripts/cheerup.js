@@ -48,7 +48,7 @@ $().ready(function(e){
   //   console.log(currentUserId);
 
   //   var newCheerUpContent = $('#cheerup_content').val()
-  //   // POST method for new cheerup
+    // POST method for new cheerup
 
   //   $.ajax({ 
   //     type: 'POST',
@@ -62,10 +62,12 @@ $().ready(function(e){
   //     }
 
   //   });
+
   //   console.log(newCheerUpContent);
   //   console.log("form submitted");
 
   // });
+
 
   function getCheerupInformation(url,requestType){
     console.log("In Cheerup Information");
