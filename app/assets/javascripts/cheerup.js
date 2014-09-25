@@ -45,7 +45,7 @@ $().ready(function(e){
 
 
   // function to create a cheerup using the ajax method 
-
+/*
   $('#new_cheerup').on('submit',function(event){
 
     event.preventDefault();
@@ -100,7 +100,7 @@ $().ready(function(e){
     });
    
   }
-
+*/
 
  // Stef animation
 

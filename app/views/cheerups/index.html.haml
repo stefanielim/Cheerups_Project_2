@@ -3,9 +3,6 @@
   #display_methods
     = link_to 'Random', display_cheerups_path(display: 'random')
     = link_to 'Popular', display_cheerups_path(display: 'prominent')
-
-
-  / %div{id: "#{params[:display]}"}
   #cheerups
     - @cheerups.each do |cheerup|
       .cheerup
