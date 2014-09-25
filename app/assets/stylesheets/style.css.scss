@@ -61,6 +61,7 @@ header {
       position: relative; 
       display: inline-block;
       width: 300px;
+      margin-right: 15px; 
 
       input {
         @include box-sizing(border-box);
@@ -98,12 +99,15 @@ header {
   .notice{
     @extend %flash-notice;
   }
-
   .alert{
     @extend %flash-alert;
   }
+
 }
 
+#error_explanation {
+  @extend %flash-error;
+}
 
 #wrapper {
   width: 96%;
@@ -305,6 +309,8 @@ main {
     &:hover {
       color: darken($blue, 15);
     }
+    padding-left: 1em;
+    padding-right: 1.5em;
   }
 
   .modal-open {
@@ -412,3 +418,5 @@ main {
     top: 0;
   }
 }
+
+
