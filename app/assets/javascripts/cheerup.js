@@ -115,8 +115,6 @@ $().ready(function(e){
    
   }
 
-
-
  // Stef animation
 
    $('#new_cheerup_title').on('click', function(){
