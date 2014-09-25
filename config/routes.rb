@@ -1,7 +1,7 @@
 CheerupsApp::Application.routes.draw do
   devise_for :users,:controllers => { :omniauth_callbacks => "omniauth_callbacks"}
   devise_for :users
-  post 'users/create_test_users_data'
+  
   root to: "cheerups#index"
   resources :users
   resources :cheerups
