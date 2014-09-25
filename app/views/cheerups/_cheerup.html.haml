@@ -24,7 +24,15 @@
         %li.upvotes{:id =>"upvote_#{cheerup.id}"}
           = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}" do
             %i{class:"fa fa-smile-o"} #{cheerup.get_upvotes.size}
-        
+  
+  - if current_user
+    -if current_user.role?(:admin)
+      .cheerup_admin_panel
+        %ul
+          %li= link_to 'Show', cheerup
+          %li= link_to 'Edit', edit_cheerup_path(cheerup)
+          %li= link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
+
 
     / .votes_info
     /   %p.cheerup_info  Prominence #{cheerup.prominence}

@@ -229,7 +229,7 @@ main {
         // border: 1px solid blue;
         text-align: center;
         height: 200px;
-        line-height: 200px;
+        // line-height: 200px;
         border-bottom: 1px solid rgb(230,230,230);
         position: relative;
         .prominence {
@@ -243,46 +243,60 @@ main {
           line-height: 60px;
         }
       }
-    }
-    .cheerup_poster_info {
-      @include span-columns(12);
-      @include clearfix;
-      // border: 1px solid red;
-      // .post_info {
-      //   float: left;
-      // }
-      .votes_info {
-        float: right;
-        &
-        i {
-          font-size: 1.1em;
-        }
-      }
-      ul {
-        li {
-          display: inline;
-          line-height: 70px;
-          padding: 0 10px;
-          &:first-child {
-            padding: 0 10px 0 0;
-          }
-          &:last-child {
-            padding: 0 0 0 10px;
-          }
-          &.upvotes, &.downvotes {
-            float: right;
-          } 
-          img {
-            border-radius: 100%;
-            float: left;
-            max-height: 50px;
-            margin: 10px;
+      .cheerup_poster_info {
+        @include span-columns(12);
+        @include omega();
+        @include clearfix;
+        // border: 1px solid red;
+        // .post_info {
+        //   float: left;
+        // }
+        border-bottom: 1px solid rgb(230,230,230);
+
+        .votes_info {
+          float: right;
+          &
+          i {
+            font-size: 1.1em;
           }
         }
+        ul {
+          li {
+            display: inline;
+            line-height: 70px;
+            padding: 0 10px;
+            &:first-child {
+              padding: 0 10px 0 0;
+            }
+            &:last-child {
+              padding: 0 0 0 10px;
+            }
+            &.upvotes, &.downvotes {
+              float: right;
+            } 
+            img {
+              border-radius: 100%;
+              float: left;
+              max-height: 50px;
+              margin: 10px;
+            }
+          }
+        }
       }
+      .cheerup_admin_panel {
+        @include span-columns(12);
+        @include clearfix;
+        ul {
+          text-align: center;
+          li {
+            display: inline;
+            line-height: 70px;
+            padding: 0 20px;
+          }
+        }
+      }  
     }
   }
-  
 }
 
 .hidden {
