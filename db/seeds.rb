@@ -1,19 +1,32 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
+def create_test_users
+  10.times do  
+    name = Faker::Name.name
+    uname = name.split(' ')[0]
+    email = Faker::Internet.email
+    password = "password"
+    User.create!(name: name,user_name: uname, email: email, password: password,  password_confirmation: password)
+  end
+end
+
+def create_test_cheerups_data(user)
+ 3.times do  
+  Cheerup.create!(content: Faker::Hacker.say_something_smart, user_id: user.id)
+end
+end
+
 
 User.delete_all
 User.create(name: "anand", user_name: "aduddella", role: "admin", status: "active",
-  email: "aduddella@gmail.com", password: "password", password_confirmation: "password")
+ email: "anand@cheerup.com", password: "password", password_confirmation: "password")
 User.create(name: "stefanie lim", user_name: "stef", role: "admin", status: "active",
-  email: "stefanie.lim04@gmail.com", password: "password", password_confirmation: "password")
-User.create(name: "kate montgomery", user_name: "kate", role: "admin", status: "active", email: "katharine.montgomery@gmail.com", password: "password", password_confirmation: "password")
+ email: "stef@cheerup.com", password: "password", password_confirmation: "password")
+User.create(name: "kate montgomery", user_name: "kate", role: "admin", status: "active", email: "kate@cheerup.com", password: "password", password_confirmation: "password")
+create_test_users
+
 
 Cheerup.delete_all
-Cheerup.create(content: "Feeling great about starting our cheerups app! :D", user_id: User.first.id, created_at: "2014-09-20 17:56:01", updated_at: "2014-09-20 17:56:01")
-Cheerup.create(content: "Setting up this cheerup model is sooo thrilling!", user_id: User.first.id, created_at: "2014-09-20 18:02:10", updated_at: "2014-09-20 18:02:10")
+User.all.each do |user|
+  create_test_cheerups_data(user)  
+end
 

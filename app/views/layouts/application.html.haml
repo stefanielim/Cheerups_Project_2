@@ -28,12 +28,8 @@
     %div#right_menu            
       - if user_signed_in?
         Welcome, #{link_to "#{current_user.name}", user_path(current_user)} #{link_to "Log out", destroy_user_session_path, method: :delete}
-        -if current_user && current_user.role?(:admin)
-          %form#test_data{:action => "/users/create_test_users_data", :method => "post"}
-            %button{:name => "test"} Create Test Data
-      - else
-        = link_to "Sign In", new_user_session_path
-        = link_to "Register", new_user_registration_path
+    = link_to "Sign In", new_user_session_path
+    = link_to "Register", new_user_registration_path
 
     #wrapper
       %p.notice= notice

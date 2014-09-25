@@ -15,6 +15,7 @@ gem 'bourbon'
 gem 'neat'
 gem 'bitters'
 gem 'cancan'
+gem 'active_model_serializers'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
