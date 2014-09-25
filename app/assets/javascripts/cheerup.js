@@ -45,36 +45,36 @@ $().ready(function(e){
 
 
   // function to create a cheerup using the ajax method 
-/*
-  $('#new_cheerup').on('submit',function(event){
 
-    event.preventDefault();
+  // $('#new_cheerup').on('submit',function(event){
 
-    var currentUserId = Number($("a[href$='sign_out']").prev()[0].toString().substr(28,31))
+  //   event.preventDefault();
+
+  //   var currentUserId = Number($("a[href$='sign_out']").prev()[0].toString().substr(28,31))
     
-    console.log(currentUserId);
+  //   console.log(currentUserId);
 
-    var newCheerUpContent = $('#cheerup_content').val()
+  //   var newCheerUpContent = $('#cheerup_content').val()
     // POST method for new cheerup
 
-    $.ajax({ 
-      type: 'POST',
-      url: "/cheerups",
-      data: {cheerup: {user_id: currentUserId, content: newCheerUpContent}},
-      success: function(){
-          console.log("POST Sucess");
-      },
-      error: function(){
-          console.log("POST Error");
-      }
+  //   $.ajax({ 
+  //     type: 'POST',
+  //     url: "/cheerups",
+  //     data: {cheerup: {user_id: currentUserId, content: newCheerUpContent}},
+  //     success: function(){
+  //         console.log("POST Sucess");
+  //     },
+  //     error: function(){
+  //         console.log("POST Error");
+  //     }
 
-    });
+  //   });
 
-    console.log(newCheerUpContent);
-    console.log("form submitted");
+  //   console.log(newCheerUpContent);
+  //   console.log("form submitted");
 
 
-  });
+  // });
 
 
   function getCheerupInformation(url,requestType){
@@ -100,7 +100,7 @@ $().ready(function(e){
     });
    
   }
-*/
+
 
  // Stef animation
 
