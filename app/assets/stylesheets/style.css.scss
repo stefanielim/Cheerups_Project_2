@@ -3,16 +3,12 @@ header {
   $navigation-background: white;
   $navigation-height: 50px;
   $navigation-padding: 1em;
-
+  position: fixed;
   background-color: $navigation-background;
   border-bottom: 1px solid darken($navigation-background, 10);
   height: $navigation-height;
   width: 100%;
   z-index: 999;
-
-  // position: relative;
-  // z-index: 9999;
- 
 
   // Site title
   .logo {
@@ -21,6 +17,7 @@ header {
     max-height: $navigation-height;
     padding-left: $navigation-padding;
     padding-right: 2em;
+    font-weight: bold;
     // color: darken($navigation-background, 50);
     // a:hover {
     //   color: $blue;
@@ -31,8 +28,9 @@ header {
   .nav {
     margin-top: 12px;
     float: left;
+    
     a.nav-link {
-      font-weight: bold;
+      // font-weight: bold;
       display: inline-block;
       padding-left: $navigation-padding;
       padding-right: 1.5em;
@@ -94,10 +92,23 @@ header {
     }
   }
 }
+
+#site_content {
+  padding-top: 50px;
+  .notice{
+    @extend %flash-notice;
+  }
+
+  .alert{
+    @extend %flash-alert;
+  }
+}
+
+
 #wrapper {
   width: 96%;
   margin: 0 auto;
-  // padding-top: 50px;
+  padding-top: 20px;
 }
 aside {
   #create_cheerup {
@@ -265,6 +276,7 @@ main {
   $modal-close-color: $light-gray;
   $modal-image-height: 135px;
   $modal-image-width: $modal-image-height;
+  display: inline-block;
 
   label {
     cursor: pointer;
@@ -283,10 +295,16 @@ main {
   }
 
   .btn {
+    @include transition(color 0.1s linear);
     // @include button(simple, $base-background-color);
     font-size: $base-font-size;
     margin-bottom: $base-line-height;
     font-family: $base-font-family;
+    font-weight: normal;
+    color: $blue;
+    &:hover {
+      color: darken($blue, 15);
+    }
   }
 
   .modal-open {
