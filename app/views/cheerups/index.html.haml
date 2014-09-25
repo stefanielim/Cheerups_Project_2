@@ -12,7 +12,7 @@
 %main
   #display_methods
     = link_to 'Random', display_cheerups_path(display: 'random')
-    = link_to 'Prominent', display_cheerups_path(display: 'prominent')
+    = link_to 'Popular', display_cheerups_path(display: 'prominent')
 
   / %div{id: "#{params[:display]}"}
   #cheerups
@@ -39,5 +39,6 @@
             = link_to 'Upvote', vote_cheerup_path(cheerup, direction: 'up'), method: :put
             = link_to 'Downvote', vote_cheerup_path(cheerup, direction: 'down'), method: :put
 
-        = link_to 'Edit', edit_cheerup_path(cheerup)
-        = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
+          = link_to 'Edit', edit_cheerup_path(cheerup)
+          = link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' } 
+
