@@ -231,10 +231,18 @@ main {
         @include omega();
         // border: 1px solid blue;
         text-align: center;
-        height: 200px;
+        height: 230px;
         // line-height: 200px;
         border-bottom: 1px solid rgb(230,230,230);
         position: relative;
+        p {
+          padding: 20px;
+          line-height: 2em;
+        }
+        img {
+          margin-top: 20px;
+          margin-bottom: -10px;
+        }
         .prominence {
           position: absolute;
           bottom: 0;
@@ -450,7 +458,10 @@ input#user_remember_me, label#remember_me_label {
       &.body { 
         color: $base-font-color;
         line-height: 1.45em;
-
+        &.bold {
+          font-weight: bold;
+          padding-top: 5px;
+        }
       }
     }
 
