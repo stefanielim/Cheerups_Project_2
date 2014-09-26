@@ -1,19 +1,20 @@
-- if current_user 
-  - if current_user.role?(:admin) || current_user.role?(:user)
-    %section
+
+%section
+  - if current_user 
+    - if current_user.role?(:admin) || current_user.role?(:user)
       #create_cheerup
         #new_cheerup_title
           %h6 Create a cheerup
           %i{class:"fa fa-angle-down"}
         .hidden#new_cheerup_form
           = render 'form'
-      .button-group#display_methods 
-        %label
-          = radio_button_tag('button-group', 'random', checked:true)
-          = link_to 'Random', display_cheerups_path(display: 'random'), class: 'button-group-item'
-        %label
-          = radio_button_tag('button-group', 'prominent')
-          = link_to 'Popular', display_cheerups_path(display: 'prominent'), class: 'button-group-item'
+  .button-group#display_methods 
+    %label
+      = radio_button_tag('button-group', 'random', checked:true)
+      = link_to 'Random', display_cheerups_path(display: 'random'), class: 'button-group-item'
+    %label
+      = radio_button_tag('button-group', 'prominent')
+      = link_to 'Popular', display_cheerups_path(display: 'prominent'), class: 'button-group-item'
 
 
 %main#cheerup_main
