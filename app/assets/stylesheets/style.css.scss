@@ -273,6 +273,7 @@ main {
         //   float: left;
         // }
         border-bottom: 1px solid rgb(230,230,230);
+        text-align: left;
 
         .votes_info {
           float: right;
@@ -285,6 +286,10 @@ main {
           li {
             display: inline;
             line-height: 70px;
+            font-size: 0.9em;
+            a {
+              font-weight: bold;
+            }
            img {
              border-radius: 100%;
              float: left;
@@ -293,7 +298,7 @@ main {
            }
             &.upvotes, &.downvotes {
               float: right;
-              font-size: 1.1em;
+              font-size: 1em;
               i {
                 letter-spacing: 5px;
               }
@@ -518,6 +523,10 @@ input#user_remember_me, label#remember_me_label {
 #user-cheerups {
   margin-left: 10px;
   margin-bottom: 20px;
+}
+
+.show-cheerup-page {
+  text-align: center;
 }
 
 

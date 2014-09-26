@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-  :name, :user_name , :role, :status, :profile_picture, :remote_profile_picture_url, :prominence, :reputation
+  :name, :user_name , :status, :profile_picture, :remote_profile_picture_url, :prominence, :reputation, :role
   
   include Gravtastic
    gravtastic size: 75, default: "retro", secure: true 

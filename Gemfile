@@ -24,7 +24,6 @@ group :assets do
 end
 
 group :test, :development do
-  #gem 'brakeman', :require => false
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'

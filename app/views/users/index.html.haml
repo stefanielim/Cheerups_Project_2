@@ -24,7 +24,7 @@
       %td= user.reputation
          
       %td= button_to "Show", user, :method => "get"
-      %td= button_to "Edit", edit_user_path(user), :method => "get"
+      - if current_user && current_user.role?(:admin)
+        %td= link_to "Edit", edit_user_path(user), :method => "get"
+        %td= link_to 'Delete account', user, confirm: "Are you sure you want to delete '#{user.name}' forever and ever? You cannot undo this action", method: :delete
 %br
-
-
