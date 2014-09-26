@@ -80,8 +80,8 @@ $().ready(function(e){
         var cheerup_id = response.cheerup['id'];
 
         $('#prominence_'+cheerup_id).text(response.cheerup['prominence']);  
-        $('#upvote_'+cheerup_id).text("Upvotes "+response.cheerup['upvote']);
-        $('#downvote_'+cheerup_id).text("Downvotes "+response.cheerup['downvote']);
+        $('li#upvote_'+cheerup_id+' a i').text(response.cheerup['upvote']);
+        $('li#downvote_'+cheerup_id+' a i').text(response.cheerup['downvote']);
 
       },
       

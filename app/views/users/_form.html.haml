@@ -9,21 +9,17 @@
           %li= msg
   %div
     = f.label :name
-    %br
     = f.text_field :name, autofocus: true
   %div
     = f.label :user_name
-    %br
     = f.text_field :user_name
   %div
     = f.label :email
-    %br
     = f.text_field :email
   %div
     = f.label :profile_picture
-    %br
     = f.file_field :profile_picture
-  .actions
+  .submit_form_button
     = f.submit
   %div
     = link_to content_tag('a', '', class: 'icon-trash'), @user, confirm: "Are you sure you want to delete '#{@user.name}' forever and ever?", method: :delete
