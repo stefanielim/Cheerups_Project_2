@@ -487,4 +487,37 @@ input#user_remember_me, label#remember_me_label {
   }
 }
 
+.show-user-header {
+  display: block;
+  margin-bottom: 20px;
+  ul {
+    li {
+      display: inline;
+      line-height: 95px;
+      font-size: 2em;
+      font-weight: bold;
+      padding-left: 10px;
+     img {
+       float: left;
+        height: 100%;
+       margin: 10px;
+     }
+      
+    }
+  }
+}
+
+.profile_info {
+  margin-left: 10px;
+  margin-bottom: 30px;
+  span {
+    font-weight: bold;
+  }
+}
+
+#user-cheerups {
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
 

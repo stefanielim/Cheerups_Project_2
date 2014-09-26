@@ -1,25 +1,80 @@
-%main
-
-  .profile_photo
+.show-user-header
+  %ul
     - if @user.profile_picture?
-      = link_to image_tag(@user.profile_picture.thumb.url), @user.profile_picture.detail.url  
+      %li= link_to image_tag(@user.profile_picture.thumb.url), @user.profile_picture.detail.url  
     - else
-      = link_to image_tag @user.gravatar_url
+      %li= image_tag @user.gravatar_url  
 
-  .profile_info
-    %h4 Name: #{@user.name}
-    %p Username: #{@user.user_name}
-    %p Email: #{@user.email}
-    %p Prominence: #{@user.prominence}
+    %li
+      = @user.name
 
-  - @user.cheerups.each do |cheerup|
-    .cheerup
-      - if cheerup.cheerup_image?
-        = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
-      - else
-        %p= cheerup.content
+.profile_info
+  %p
+    %span Username:
+    = @user.user_name
+  %p
+    %span Email: 
+    = @user.email
+  %p
+    %span Prominence:
+    = @user.prominence
+  %p
+    %span Reputation:
+    = @user.reputation
 
-  %br
-  = link_to 'Edit', edit_user_path(@user) 
-  
-  = link_to 'Delete account', @user, confirm: "Are you sure you want to delete '#{@user.name}' forever and ever? You cannot undo this action", method: :delete
+%main#cheerup_main
+
+  #cheerups
+    %h5#user-cheerups Cheerups
+    - @user.cheerups.each do |cheerup|
+      .cheerup
+        .cheerup_content
+          - if cheerup.cheerup_image?
+            = link_to image_tag(cheerup.cheerup_image.thumb.url), cheerup.cheerup_image.detail.url
+          - else
+            %p= cheerup.content
+          .prominence{:id =>"prominence_#{cheerup.id}"} 
+            = cheerup.prominence
+
+          .cheerup-show
+            = link_to cheerup do
+              %i{class:"fa fa-search-plus"}
+        .cheerup_poster_info 
+          %ul
+            - if cheerup.user.profile_picture?
+              %li= link_to image_tag(cheerup.user.profile_picture.thumb.url), cheerup.user, class: 'cheerup-avatar'  
+            - else
+              %li= link_to image_tag(cheerup.user.gravatar_url), cheerup.user, class: 'cheerup-avatar'   
+
+            %li
+              = link_to cheerup.user.try(:user_name), cheerup.user
+              = "#{time_ago_in_words(cheerup.created_at)} ago"
+            
+            %li.downvotes{:id =>"downvote_#{cheerup.id}"}
+              - if current_user
+                - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+                  = link_to vote_cheerup_path(cheerup, direction: 'down'), method: :put, :id => "downvote_#{cheerup.id}" do
+                    %i{class:"fa fa-thumbs-o-down"} #{cheerup.get_downvotes.size}
+                - else
+                  %i{class:"fa fa-thumbs-o-down"} #{cheerup.get_downvotes.size}
+              - else
+                %i{class:"fa fa-thumbs-o-down"} #{cheerup.get_downvotes.size}
+            %li.upvotes{:id =>"upvote_#{cheerup.id}"}
+              - if current_user
+                - if  session['warden.user.user.key'][0][0].to_i != cheerup.user_id
+                  = link_to vote_cheerup_path(cheerup, direction: 'up'), method: :put, :id => "upvote_#{cheerup.id}" do
+                    %i{class:"fa fa-thumbs-o-up"} #{cheerup.get_upvotes.size}
+                - else
+                  %i{class:"fa fa-thumbs-o-up"} #{cheerup.get_upvotes.size}
+              - else
+                %i{class:"fa fa-thumbs-o-up"} #{cheerup.get_downvotes.size}
+        - if current_user
+          - if  session['warden.user.user.key'][0][0].to_i == cheerup.user_id
+            .cheerup_admin_panel
+              %ul
+                %li= link_to 'Edit', edit_cheerup_path(cheerup)
+                %li= link_to 'Delete', cheerup, method: :delete, data: { confirm: 'Are you sure?' }    
+%br
+= link_to 'Edit', edit_user_path(@user) 
+
+= link_to 'Delete account', @user, confirm: "Are you sure you want to delete '#{@user.name}' forever and ever? You cannot undo this action", method: :delete

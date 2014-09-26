@@ -4,7 +4,7 @@ $().ready(function(e){
   $("a[id *= downvote],a[id ^= upvote]").on('click',function(event) { 
     
     event.preventDefault();
-
+    console.log('clicked vote');
     var cheerupVoteAction = event.currentTarget.id.split('_')[0];  
     var cheerup_id = event.currentTarget.id.split('_')[1];  
     var url = " ";
@@ -78,7 +78,7 @@ $().ready(function(e){
       url: url,
       success: function(response){
         var cheerup_id = response.cheerup['id'];
-
+        console.log(response)
         $('#prominence_'+cheerup_id).text(response.cheerup['prominence']);  
         $('li#upvote_'+cheerup_id+' a i').text(response.cheerup['upvote']);
         $('li#downvote_'+cheerup_id+' a i').text(response.cheerup['downvote']);
